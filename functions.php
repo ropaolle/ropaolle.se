@@ -20,6 +20,35 @@ add_filter( 'beans_footer_credit_right_text_output', 'example_footer_credit_righ
 
 function example_footer_credit_right_text() {
 
-	return 'Your text';
+	return '<a title="RopaOlles Twitter Account" target="_blank" href="https://twitter.com/RopaOlle"><i class="uk-icon-twitter uk-icon-medium"></i></a>' .
+		   '<a title="RopaOlles GitHub Account" target="_blank" href="https://twitter.com/RopaOlle"><i class="uk-icon-github uk-icon-medium"></i></a>';
  
+}
+
+// Register a footer widget area.
+add_action( 'widgets_init', 'example_widget_area' );
+
+function example_widget_area() {
+
+    beans_register_widget_area( array(
+        'name' => 'Footer',
+        'id' => 'footer',
+        'beans_type' => 'grid'
+    ) );
+
+}
+
+// Display the footer widget area in the front end.
+add_action( 'beans_footer_before_markup', 'example_footer_widget_area' );
+
+function example_footer_widget_area() {
+
+	?>
+	<div class="tm-mega-footer uk-block">
+		<div class="uk-container uk-container-center">
+			<?php echo beans_widget_area( 'footer' ); ?>
+		</div>
+	</div>
+	<?php
+
 }

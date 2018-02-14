@@ -8,12 +8,9 @@ cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes
 sudo chown daemon:ropaolle ropaolle/
 cd ropaolle
 git init
-git remote add origin git@github.com:ropaolle/ropaolle.se.git
+git remote add origin ssh://git@github.com/ropaolle/ropaolle.se.git
 git remote -v
 
 # Fetch
-git fetch origin
+git pull origin master
 ```
-
-
-git clone git@github.com:ropaolle/ropaolle.se.git
