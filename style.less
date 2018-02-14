@@ -3,13 +3,53 @@
  * Make sure to enable development mode via the Admin->Appearance->Settings option while working on your website. LESS will then be processed on the fly.
  */
 
+ /* Header
+ ========================================================================== */
+ .tm-site-branding a {
+    font-size: 66px;
+    line-height: 24px;
+    color: #ddd;
+ }
+
+ .uk-display-block {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+ .uk-navbar-nav > li > a {
+    color: #999;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* Phone landscape and smaller */
+
+@media (max-width: @breakpoint-small) {
+
+    .tm-site-branding a {
+        font-size: 45px;
+        line-height: 50px;
+     }
+
+     .tm-site-branding img {
+        display: none;
+     }
+
+}
+ 
 
 /* Footer
  ========================================================================== */
-.tm-footer  {
-    background-color: #333;
+ .tm-mega-footer {
+    background-color: #CCCCCC;
+ }
+
+ .tm-footer  {
+    background-color: #333333;
 }
 
 .tm-footer .uk-align-medium-right i {
+    border-top: 2px solid #EDEDED;
     margin-left: 12px;
 }

@@ -1,6 +1,9 @@
 # ropaolle.se
 Wordpress theme - Hemma hos ropaolle
 
+# Info
+[UI kit](https://getuikit.com/v2/docs/icon.html)
+
 # Add Beans
 ``` bash
 # Setup

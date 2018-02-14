@@ -21,7 +21,7 @@ add_filter( 'beans_footer_credit_right_text_output', 'example_footer_credit_righ
 function example_footer_credit_right_text() {
 
 	return '<a title="RopaOlles Twitter Account" target="_blank" href="https://twitter.com/RopaOlle"><i class="uk-icon-twitter uk-icon-medium"></i></a>' .
-		   '<a title="RopaOlles GitHub Account" target="_blank" href="https://twitter.com/RopaOlle"><i class="uk-icon-github uk-icon-medium"></i></a>';
+		   '<a title="RopaOlles GitHub Account" target="_blank" href="https://github.com/RopaOlle"><i class="uk-icon-github uk-icon-medium"></i></a>';
  
 }
 
