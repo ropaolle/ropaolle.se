@@ -15,3 +15,11 @@ function beans_child_enqueue_uikit_assets() {
 
 }
 
+// Modify the footer credit right text.
+add_filter( 'beans_footer_credit_right_text_output', 'example_footer_credit_right_text' );
+
+function example_footer_credit_right_text() {
+
+	return 'Your text';
+ 
+}
