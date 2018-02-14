@@ -15,6 +15,13 @@ function beans_child_enqueue_uikit_assets() {
 
 }
 
+// Add edit post link
+add_action( 'beans_post_body_append_markup', 'example_edit_post' );
+
+function example_edit_post() {
+    ?><p class="uk-margin-bottom-remove"><?php edit_post_link(); ?></p><?php
+}
+
 // Modify the footer credit right text.
 add_filter( 'beans_footer_credit_right_text_output', 'example_footer_credit_right_text' );
 
