@@ -15,6 +15,6 @@ git remote add origin ssh://git@github.com/ropaolle/ropaolle.se.git
 git remote -v
 
 # Pull
-cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes
+cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
 git pull origin master
 ```
