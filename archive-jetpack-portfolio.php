@@ -5,21 +5,22 @@
  * @package Ropaolle
  */
 
-get_header(); ?>
+add_action( 'beans_content_prepend_markup', 'beans_child_view_add_description' );
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+function beans_child_view_add_description() {
 
-		<?php
-			if ( have_posts() ) {
-				get_template_part( 'content', 'portfolio-archive' );
-			} else {
-				get_template_part( 'content', 'none' );
-			}
-		?>
+        ?><p>Added description to the Jetpack Portfolio page</p><?php
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+}
 
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+// Force layout.
+add_filter( 'beans_layout', 'example_force_layout' );
+
+function example_force_layout() {
+
+    return 'sp_c';
+
+}
+
+// Load Beans document.
+beans_load_document();
