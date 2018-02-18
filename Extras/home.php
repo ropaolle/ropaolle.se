@@ -1,4 +1,9 @@
 <?php
+/**
+ * The template for displaying the Blog archive page.
+ *
+ * @package Ropaolle
+ */
 
 add_action( 'beans_header_after_markup', 'beans_child_view_add_title' );
 
