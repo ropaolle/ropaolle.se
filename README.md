@@ -29,8 +29,7 @@ git pull origin master
 
 ```bash
 # Install
-mkdir ~/gcloud
-cd ~/gcloud
+mkdir ~/gcloud && cd ~/gcloud
 wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-189.0.0-linux-x86_64.tar.gz
 tar -xvf google-cloud-sdk-189.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh

@@ -6,7 +6,7 @@ function beans_child_view_add_title() {
 
 	?>
 	<div class="uk-container uk-container-center">
-		<h1>Added Title home.php</h1>
+		<h1>Added Title portfolio.php</h1>
 	</div>
 	<?php
 
@@ -17,7 +17,7 @@ add_action( 'beans_content_prepend_markup', 'beans_child_view_add_description' )
 
 function beans_child_view_add_description() {
 
-	?><p>Added description home.php</p><?php
+	?><p>Added description portfolio.php</p><?php
 
 }
 
@@ -26,3 +26,4 @@ beans_remove_action( 'beans_post_image' );
 
 // Load Beans document.
 beans_load_document();
+
