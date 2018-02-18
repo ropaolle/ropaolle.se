@@ -1,11 +1,14 @@
 # ropaolle.se
+
 Wordpress theme - Hemma hos ropaolle
 
 # Info
+
 [UI kit](https://getuikit.com/v2/docs/icon.html)
 
 # Add Beans
-``` bash
+
+```bash
 # Setup
 cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes
 sudo chown daemon:ropaolle ropaolle/
@@ -18,3 +21,19 @@ git remote -v
 cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
 git pull origin master
 ```
+
+## Connecting to Instances
+
+[Info](https://cloud.google.com/compute/docs/instances/connecting-to-instance#standardssh)
+
+    cd ~/Downloads
+    wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-189.0.0-linux-x86_64.tar.gz
+    tar -xvf google-cloud-sdk-189.0.0-linux-x86_64.tar.gz
+    ./google-cloud-sdk/install.sh
+    gcloud init
+
+    gcloud compute ssh wordpress-multisite-production-vm
+
+### Backup location
+
+    ls -l /opt/bitnami/apps/wordpress/htdocs/wp-content/sedlex/backup-scheduler/1
