@@ -1,10 +1,26 @@
-# ropaolle.se
+# Todo
 
-Wordpress theme - Hemma hos ropaolle
+* [ ] Change font
+* [ ] ?
+* [ ] ?
+* [ ] ?
+* [ ] ?
+* [ ] ?
+* [ ] ?
+* [ ] ?
 
 # Info
 
-[UI kit](https://getuikit.com/v2/docs/icon.html)
+* [UI kit](https://getuikit.com/v2/docs/icon.html)
+* Backup location (/opt/bitnami/apps/wordpress/htdocs/wp-content/sedlex/backup-scheduler/1)
+
+## Connect to instance
+
+```bash
+gcloud compute ssh wordpress-multisite-production-vm
+cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
+git pull origin master
+```
 
 # Add Beans
 
@@ -23,7 +39,7 @@ cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
 git pull origin master
 ```
 
-## Connecting to Instances
+## Connecting to GCP Instances
 
 [Info](https://cloud.google.com/compute/docs/instances/connecting-to-instance#standardssh)
 
@@ -41,7 +57,3 @@ gcloud init
 # Connect
 gcloud compute ssh wordpress-multisite-production-vm
 ```
-
-### Backup location
-
-    ls -l /opt/bitnami/apps/wordpress/htdocs/wp-content/sedlex/backup-scheduler/1

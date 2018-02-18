@@ -1,54 +1,51 @@
-/*
- * In this file, you may style your site using CSS or LESS as well as overwrite UIkit LESS variables.
- * Make sure to enable development mode via the Admin->Appearance->Settings option while working on your website. LESS will then be processed on the fly.
- */
-
- /* Header
+/* Font
  ========================================================================== */
- .tm-site-branding a {
-    font-size: 66px;
-    line-height: 80px;
-    color: #ddd;
- }
 
- .uk-display-block {
-    font-size: 14px;
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic,400italic,500italic);
+@global-font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* Header
+ ========================================================================== */
+.tm-site-branding a {
+  font-size: 66px;
+  line-height: 80px;
+  color: #ddd;
 }
 
- .uk-navbar-nav > li > a {
-    color: #999;
-    font-size: 16px;
-    font-weight: bold;
+.uk-display-block {
+  font-size: 14px;
 }
 
+.uk-navbar-nav > li > a {
+  color: #999;
+  font-size: 16px;
+  font-weight: bold;
+}
 
 /* Phone landscape and smaller */
 
 @media (max-width: @breakpoint-small) {
+  .tm-site-branding a {
+    font-size: 45px;
+    line-height: 50px;
+  }
 
-    .tm-site-branding a {
-        font-size: 45px;
-        line-height: 50px;
-     }
-
-     .tm-site-branding img {
-        display: none;
-     }
-
+  .tm-site-branding img {
+    display: none;
+  }
 }
- 
 
 /* Footer
  ========================================================================== */
- .tm-mega-footer {
-    background-color: #CCCCCC;
- }
+.tm-mega-footer {
+  background-color: #cccccc;
+}
 
- .tm-footer  {
-    background-color: #333333;
-    border-top: 2px solid #EDEDED;
+.tm-footer {
+  background-color: #333333;
+  border-top: 2px solid #ededed;
 }
 
 .tm-footer .uk-align-medium-right i {
-    margin-left: 12px;
+  margin-left: 12px;
 }
