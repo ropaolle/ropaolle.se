@@ -27,18 +27,15 @@ add_filter( 'beans_footer_credit_right_text_output', 'example_footer_credit_righ
 
 function example_footer_credit_right_text() {
 
-	$url = get_stylesheet_directory() . '/logo-ropaolle-small.png';
-
-	$logo = beans_selfclose_markup_e( 'beans_favicon', 'link', array(
-		'rel'  => 'Shortcut Icon',
-		'href' => $url, // Automatically escaped.
-		'type' => 'image/x-icon',
+	$logo = beans_selfclose_markup_e( 'beans_favicon', 'img', array(
+		'width'  => '20',
+		'height'  => '20',
+		'src' => get_stylesheet_directory() . '/logo-ropaolle-small.png', // Automatically escaped.
 	) );
 
 	return '<a title="RopaOlles Twitter Account" target="_blank" href="https://twitter.com/RopaOlle"><i class="uk-icon-twitter uk-icon-medium"></i></a>' .
 		   '<a title="RopaOlles GitHub Account" target="_blank" href="https://github.com/RopaOlle"><i class="uk-icon-github uk-icon-medium"></i></a>' . 
-		   '<php echo $logo ?>' .
-		   '<img width="40" height="40" src="<php echo $url ?>">';
+		   $logo;
 }
 
 // Register a footer widget area.
