@@ -27,8 +27,15 @@ add_filter( 'beans_footer_credit_right_text_output', 'example_footer_credit_righ
 
 function example_footer_credit_right_text() {
 
+	$logo = beans_selfclose_markup_e( 'beans_logo_image', 'img', array(
+		'class' => 'tm-logo',
+		'src'   => $logo, // Automatically escaped.
+		'alt'   => get_bloginfo( 'name' ), // Automatically escaped.
+	) );
+
 	return '<a title="RopaOlles Twitter Account" target="_blank" href="https://twitter.com/RopaOlle"><i class="uk-icon-twitter uk-icon-medium"></i></a>' .
-		   '<a title="RopaOlles GitHub Account" target="_blank" href="https://github.com/RopaOlle"><i class="uk-icon-github uk-icon-medium"></i></a>';
+		   '<a title="RopaOlles GitHub Account" target="_blank" href="https://github.com/RopaOlle"><i class="uk-icon-github uk-icon-medium"></i></a>' .
+		   $logo;
 }
 
 // Register a footer widget area.
@@ -56,5 +63,37 @@ function example_footer_widget_area() {
 		</div>
 	</div>
 	<?php
+
+}
+
+// Modify site branding
+beans_replace_action( 'beans_header', 'beans_site_branding' );
+
+function beans_site_branding() {
+
+	beans_open_markup_e( 'beans_site_branding', 'div', array(
+		'class' => 'tm-site-branding uk-float-left' . ( ! get_bloginfo( 'description' ) ? ' uk-margin-small-top' : null ),
+	) );
+
+		beans_open_markup_e( 'beans_site_title_link', 'a', array(
+			'href'     => home_url(), // Automatically escaped.
+			'rel'      => 'home',
+			'itemprop' => 'headline',
+		) );
+
+			if ( $logo = get_theme_mod( 'beans_logo_image', false ) ) {
+				beans_selfclose_markup_e( 'beans_logo_image', 'img', array(
+					'class' => 'tm-logo2',
+					'src'   => $logo, // Automatically escaped.
+					'alt'   => get_bloginfo( 'name' ), // Automatically escaped.
+				) );
+				beans_output_e( 'beans_site_title_text', get_bloginfo( 'name' ) );
+			} else {
+				beans_output_e( 'beans_site_title_text', get_bloginfo( 'name' ) );
+			}
+
+		beans_close_markup_e( 'beans_site_title_link', 'a' );
+
+	beans_close_markup_e( 'beans_site_branding', 'div' );
 
 }
