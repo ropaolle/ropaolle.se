@@ -1,9 +1,9 @@
 # Todo
 
-* [ ] Change font
-* [ ] ?
-* [ ] ?
-* [ ] ?
+* [x] Change font
+* [x] Copy files SCP
+* [ ] dev.ropaolle.se
+* [ ] small logo?
 * [ ] ?
 * [ ] ?
 * [ ] ?
@@ -12,13 +12,21 @@
 # Info
 
 * [UI kit](https://getuikit.com/v2/docs/icon.html)
-* Backup location (/opt/bitnami/apps/wordpress/htdocs/wp-content/sedlex/backup-scheduler/1)
+* [Backup location](/opt/bitnami/apps/wordpress/htdocs/wp-content/sedlex/backup-scheduler/1)
+* [Remote editing](https://codepen.io/ginfuru/post/remote-editing-files-with-ssh)
 
 ## Connect to instance
 
 ```bash
+# Connect
 gcloud compute ssh wordpress-multisite-production-vm
 cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
+
+# Copy files from local to remote
+bash push.sh
+gcloud compute scp ~/Projects/ropaolle.se/*(^/) wordpress-multisite-production-vm:/opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
+
+# Pull
 git pull origin master
 ```
 
@@ -57,3 +65,6 @@ gcloud init
 # Connect
 gcloud compute ssh wordpress-multisite-production-vm
 ```
+
+
+
