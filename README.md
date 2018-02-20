@@ -1,6 +1,6 @@
 # Todo
 
-* [ ] ?
+* [ ] Cron kör ej backup, måste daemon köra cron?
 * [ ] ?
 * [ ] ?
 
