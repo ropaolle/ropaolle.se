@@ -1,10 +1,5 @@
 # Todo
 
-* [x] Change font
-* [x] Copy files SCP
-* [ ] dev.ropaolle.se
-* [ ] small logo?
-* [ ] ?
 * [ ] ?
 * [ ] ?
 * [ ] ?
@@ -16,6 +11,10 @@
 * [Remote editing](https://codepen.io/ginfuru/post/remote-editing-files-with-ssh)
 
 ## Connect to instance
+
+Inline `code` asdasd asd.
+Inline code `asdasd` asd.
+Inline `code` asdasd asd.
 
 ```bash
 # Connect

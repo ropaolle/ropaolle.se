@@ -1,1 +1,0 @@
-gcloud compute scp ~/Projects/ropaolle.se/* wordpress-multisite-production-vm:/opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle

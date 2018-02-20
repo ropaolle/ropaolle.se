@@ -89,3 +89,20 @@ function modify_beans_site_branding() {
 	beans_close_markup_e( 'beans_site_branding', 'div' );
 
 }
+
+// Add login/logout link to the primary menu
+add_filter('wp_nav_menu_items', 'add_login_logout_link', 10, 2);
+     
+function add_login_logout_link($nav, $args) {
+	ob_start();
+	wp_loginout('index.php');
+	$loginoutlink = ob_get_contents();
+	ob_end_clean();
+	
+	if( $args->theme_location == 'primary' ) {
+		$nav .= '<li class="login-link">'. $loginoutlink .'</li>';
+	}
+			
+	return $nav;
+  }
+	 
