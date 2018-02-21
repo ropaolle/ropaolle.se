@@ -1,0 +1,14 @@
+
+/* Login page
+ ========================================================================== */
+ body.login {
+    background-color: #333;
+  }
+  
+ .login h1 a {
+    background-image: url(logo.png);
+  }
+  
+.login #nav a {
+    color: #999;
+}
