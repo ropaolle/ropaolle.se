@@ -78,7 +78,7 @@ function modify_beans_site_branding() {
 			if ( $logo = get_theme_mod( 'beans_logo_image', false ) ) {
 				beans_selfclose_markup_e( 'beans_logo_image', 'img', array(
 					'class' => 'tm-logo',
-					'src'   => $logo, // Automatically escaped.
+					'src'   => str_replace( 'http://', 'https://', $logo ), // Automatically escaped.
 					'alt'   => get_bloginfo( 'name' ), // Automatically escaped.
 				) );				
 			}
