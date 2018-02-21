@@ -1,0 +1,98 @@
+/* Fonts
+ ========================================================================== */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic,400italic,500italic);
+
+@global-font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* Header
+ ========================================================================== */
+.tm-site-branding a {
+  font-size: 66px;
+  line-height: 66px;
+  color: #ddd;
+}
+
+.tm-site-branding img {
+  margin-top: -15px;
+  margin-right: 5px;
+  width: 66px;
+}
+
+.uk-display-block {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.uk-navbar-nav > li > a {
+  color: #999;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Phone landscape and smaller */
+
+@media (max-width: @breakpoint-small) {
+  .tm-site-branding a {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .tm-site-branding img {
+    margin-top: -10px;
+    width: 35px;
+  }
+}
+
+/* Offcanvas menu
+ ========================================================================== */
+
+#offcanvas_menu .widget_media_image {
+  position: fixed;
+  bottom: 0px;
+}
+
+/* Footer
+ ========================================================================== */
+.tm-mega-footer {
+  background-color: #333;
+}
+
+.tm-mega-footer .uk-panel-title {
+  color: #777;
+}
+
+.tm-footer {
+  background-color: #444;
+  border-top: 3px solid #555;
+}
+
+.uk-align-medium-left {
+  font-size: 13px;
+}
+
+.tm-footer .uk-align-medium-right i {
+  margin-left: 12px;
+}
+
+/* Text
+ ========================================================================== */
+blockquote {
+  padding: 15px 15px 5px 15px;
+  border-left: 5px solid #EDEDED;
+  font-size: inherit;
+  line-height: inherit;
+  font-style: italic;
+  background-color: #f0f7f7;
+}
+
+:not(pre) > code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+  color: inherit;
+  font-family: Consolas, monospace, serif;
+  white-space: nowrap;
+}

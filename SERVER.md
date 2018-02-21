@@ -1,33 +1,31 @@
 # Egen Wordpress-server i Google Cloud Platform
 
-* [ ] WordPress Multisite
-  * ropaolle.se, wp.ropaolle.se
-  * callell.se, www.callell.se
-* [ ] Domain and subdomain
-* [ ] Email skicka och ta emot
-* [ ] SSH med certifikat från Let's Encrypt
-* [ ] Backup av siter
+* [x] WordPress Multisite (ropaolle.se, wp.ropaolle.se)
+* [x] Domain and subdomain
+* [x] Email skicka och ta emot
+* [x] SSH med certifikat från Let's Encrypt
+* [x] Backup av siter
 
-## New server
+## New server instance
 
-[Deploying a GCP server](https://console.cloud.google.com/launcher/details/bitnami-launchpad/wordpress-multisite?q=wordpre&project=ropaolle-wordpress-multisite)
+Gå till [Deploying a GCP server](https://console.cloud.google.com/launcher/details/bitnami-launchpad/wordpress-multisite?q=wordpre&project=ropaolle-wordpress-multisite) och skapa en ny Bitnami Wordpress Multisite instans ([Bitnami dokumentation](https://docs.bitnami.com/google/apps/wordpress-multisite/)).
 
-Site address: http://35.204.96.178/
-Admin URL: http://35.204.96.178/wp-admin/
-Instance: wordpress-multisite-production-vm
-Instance zone: europe-west4-c
-Instance machine type: g1-small
+* Site address: http://35.204.96.178/
+* Instance: wordpress-multisite-production-vm
 
 ### Assign a static external IP address to your VM instance
 
-[Gå till](https://console.cloud.google.com/networking/addresses/list?project=ropaolle-wordpress-multisite)
+Ändra typ från `Ephemeral` till `Static` på sidan [External IP addresses](https://console.cloud.google.com/networking/addresses/list?project=ropaolle-wordpress-multisite).
 
-### Lägg till A-pekare i DNS
+## DNS/Mail (Loopia/Mailgun)
 
-[Loopia](https://customerzone.loopia.se)
-\*.ropaolle.se -> A: 35.204.96.178
-@.ropaolle.se -> A: 35.204.96.178
-wp.ropaolle.se -> A: 35.204.96.178
+### Konfigurera DNS
+
+| Subdomän | Domän       | Pekare | Data          | Kommentar                                  |
+| -------- | ----------- | ------ | ------------- | ------------------------------------------ |
+| \*       | ropaolle.se | A      | 35.204.96.178 | \* gäller för ej definierade subdomäner.   |
+| @        | ropaolle.se | A      | 35.204.96.178 | @ används till bl.a. mail och verifiering. |
+| wp       | ropaolle.se | A      | 35.204.96.178 | Används för test                           |
 
 ### Konfigurera in/utgående mail via Mailgun/Loopia
 
@@ -35,7 +33,6 @@ Pekare i Loopia, domänver i Mailgun...
 
 ### Konfigurera utgående email i Wordpress
 
-[Login](http://35.204.96.178/wp-admin/)
 Aktivera Plugins/WP Mail SMTP och gå till [settings](http://35.204.96.178.xip.io/wp-admin/options-general.php?page=wp-mail-smtp).
 
 From Email: admin@ropaolle.se
@@ -44,15 +41,11 @@ Mailer: Mailgun
 Mailgun API Key: https://app.mailgun.com/app/domains/ropaolle.se
 Domain name: ropaolle.se
 
-### Konfigurera wordpress Superuser
+### Uppdatera Wordpress Superuser
 
-Admin user: user
-Admin password: \*\*\*
-Email: ropaolle@outlook.com
+När epost är konfigurerat kan du testa den genom att [uppdatera epostadressen till Wordpress Superuser](https://ropaolle.se/wp-admin/network/profile.php?wp_http_referer=%2Fwp-admin%2Fnetwork%2Fusers.php).
 
-[Bitnami dokumentation](https://docs.bitnami.com/google/apps/wordpress-multisite/)
-
-### Konfigurera domännamn och subdomän
+## Konfigurera domännamn och subdomän
 
 ```bash
 cd /opt/bitnami/apps/wordpress
@@ -60,20 +53,19 @@ sudo ./bnconfig --machine_hostname ropaolle.se
 
 # The bnconfig tool runs automatically every time the server starts to reset the machine hostname to its IP address. Obviously this is undesirable when using a custom domain name, so you must also execute the following command to disable the bnconfig tool for subsequent restarts.
 sudo mv bnconfig bnconfig.disabled
+
+# Restart Apache, PHP och MySql
+sudo /opt/bitnami/ctlscript.sh restart
 ```
 
 ### Använda flera domäner
 
-* Aktivera och konfigurera WordPress MU Domain Mapping .
+* Aktivera och konfigurera [WordPress MU Domain Mapping](?).
 * Följande måste tillfälligt aktiveras igen `sudo mv bnconfig bnconfig.disabled`.
 
-### Restart apache, php och mysql
+## Backup
 
-```bash
-sudo /opt/bitnami/ctlscript.sh restart
-```
-
-### Backup
+### Manual backup on server
 
 ```bash
 mkdir ~/wp-backup
@@ -83,11 +75,13 @@ sudo tar -pczvf application-backup.tar.gz /opt/bitnami # ca 360 Mb
 sudo /opt/bitnami/ctlscript.sh start
 ```
 
-### Generate And Install A Let's Encrypt SSL Certificate For A Bitnami Application
+### Auto backup with Backup Scheduler
 
-(ref)[https://docs.bitnami.com/google/how-to/generate-install-lets-encrypt-ssl/]
+Kan sköts direkt från Wordpress. Filer sparas i `/opt/bitnami/apps/wordpress/htdocs/wp-content/sedlex/backup-scheduler/`.
 
-#### Step 1: Install The Certbot Client
+## Generate And Install A Let's Encrypt SSL Certificate ([how to](https://docs.bitnami.com/google/how-to/generate-install-lets-encrypt-ssl/))
+
+### Step 1: Install The Certbot Client
 
 ```bash
 sudo mkdir /opt/bitnami/letsencrypt
@@ -97,7 +91,7 @@ sudo chmod a+x ./certbot-auto
 sudo ./certbot-auto
 ```
 
-#### Step 2: Generate A Let's Encrypt Certificate For Your Domain
+### Step 2: Generate A Let's Encrypt Certificate For Your Domain
 
 ```bash
 # Stop server
@@ -108,7 +102,7 @@ cd /opt/bitnami/letsencrypt
 sudo ./certbot-auto certonly --standalone -d ropaolle.se -d www.ropaolle.se -d wp.ropaolle.se #--test-cert
 ```
 
-#### Step 3: Configure The Web Server To Use The Let's Encrypt Certificate
+### Step 3: Configure The Web Server To Use The Let's Encrypt Certificate
 
 ```bash
 # Conf Apache to use new cert's
@@ -124,11 +118,11 @@ sudo chmod 600 /opt/bitnami/apache2/conf/server*
 sudo /opt/bitnami/ctlscript.sh start
 ```
 
-#### Step 4: Test The Configuration
+### Step 4: Test The Configuration
 
 https://ropaolle.se
 
-#### Step 5: Renew The Let's Encrypt Certificate
+### Step 5: Renew The Let's Encrypt Certificate
 
 ```bash
 cd /opt/bitnami/letsencrypt
@@ -138,7 +132,9 @@ sudo crontab -e
   16 12 * * * /opt/bitnami/letsencrypt/certbot-auto renew
 ```
 
-### How To Force HTTPS Redirection?
+## Övrigt
+
+### Force HTTPS Redirection?
 
 ```bash
 sudo nano /opt/bitnami/apps/wordpress/conf/httpd-prefix.conf
@@ -148,7 +144,8 @@ sudo nano /opt/bitnami/apps/wordpress/conf/httpd-prefix.conf
 sudo /opt/bitnami/ctlscript.sh restart apache  
 ```
 
-### How To Disable The WordPress Multisite Cron Script?
+### Disable The WordPress Multisite Cron Script?
+
 [Crontab troubleshoot](https://serverfault.com/questions/449651/why-is-my-crontab-not-working-and-how-can-i-troubleshoot-it)
 
 ```bash
@@ -166,6 +163,35 @@ sudo crontab -e # sudo crontab -u daemon -e # daemon blocked in /etc/cron.deny
 
 ```bash
 sudo /opt/bitnami/apps/wordpress/bnconfig.disabled --disable_banner 1
+```
+
+### Removed plugins
+
+* All In One SEO Pack
+* All-in-One WP Migration
+* Google Analytics for WordPress by MonsterInsights
+* Simple Tags
+
+### Connecting to GCP Instances with Gcloud SDK
+
+[Info](https://cloud.google.com/compute/docs/instances/connecting-to-instance#standardssh)
+
+```bash
+# Install
+mkdir ~/gcloud && cd ~/gcloud
+wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-189.0.0-linux-x86_64.tar.gz
+tar -xvf google-cloud-sdk-189.0.0-linux-x86_64.tar.gz
+./google-cloud-sdk/install.sh
+gcloud components update
+
+# Init
+gcloud init
+
+# Connect with SSH
+gcloud compute ssh wordpress-multisite-production-vm
+
+# Copy files from local to remote
+gcloud compute scp ~/Projects/ropaolle.se/themes/ropaolle/* wordpress-multisite-production-vm:/opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
 ```
 
 # Install Git
@@ -187,10 +213,3 @@ ssh-keygen -t rsa -b 4096 -C "ropaolle@gmail.com" # Add passphrase. retro1971
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa # retro1971
 ```
-
-# Removed plugins
-
-* All In One SEO Pack
-* All-in-One WP Migration
-* Google Analytics for WordPress by MonsterInsights
-* Simple Tags
