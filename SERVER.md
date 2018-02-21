@@ -153,10 +153,13 @@ sudo /opt/bitnami/ctlscript.sh restart apache
 sudo nano /opt/bitnami/apps/wordpress/htdocs/wp-config.php
   define('DISABLE_WP_CRON', true);
 
+# Allow daemon to run cron
+sudo nano /etc/cron.deny # daemon
+
 # Add to system cron
-sudo crontab -e # sudo crontab -u daemon -e # daemon blocked in /etc/cron.deny
- */15 * * * * wget -q -O - "https://ropaolle.se/wp-cron.php?t=`date +\%s`" > /dev/null 2>&1
- */30 * * * * wget -q -O - "https://wpdev.ropaolle.se/wp-cron.php?t=`date +\%s`" > /dev/null 2>&1
+sudo crontab -u daemon -e
+  */15 * * * * wget -q -O - "https://ropaolle.se/wp-cron.php?t=`date +\%s`" > /dev/null 2>&1
+  */30 * * * * wget -q -O - "https://wpdev.ropaolle.se/wp-cron.php?t=`date +\%s`" > /dev/null 2>&1
 ```
 
 ### Remove Bitnami info page
