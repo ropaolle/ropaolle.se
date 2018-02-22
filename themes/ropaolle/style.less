@@ -96,3 +96,15 @@ blockquote {
   font-family: Consolas, monospace, serif;
   white-space: nowrap;
 }
+
+.checkmarks li {
+  list-style-type: none;
+  margin-left: -15px;
+
+  &:before {
+    content:"\2714\0020";
+    color: green;
+    font-size: 130%;
+    line-height: 140%;
+  }
+}
