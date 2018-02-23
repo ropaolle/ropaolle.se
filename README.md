@@ -1,7 +1,9 @@
 # Todo
 
 * [ ] Cron kör ej backup, måste daemon köra cron?
-* [ ] 
+* [ ] Portfolio
+      - Fält: Demo, GitHub Repo
+      - Batches?
 * [ ] ?
 
 ## Info

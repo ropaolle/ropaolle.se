@@ -112,3 +112,37 @@ function my_custom_login() {
 }
 
 add_action('login_head', 'my_custom_login');
+
+
+
+// Add custom fields
+
+
+add_action( 'admin_init', 'example_register_post_meta' );
+
+function example_register_post_meta() {
+// get_option( 'field_id', 'default_value' );
+	// https://www.getbeans.io/documentation/field-types/
+    $fields = array(
+        array(
+            'id'         => 'field_portfolio_github_repostory',
+            'label'      => __( 'GitHub Repostory', 'ropaolle' ),
+            'type'       => 'text',
+		),
+        array(
+            'id'         => 'field_portfolio_demo',
+            'label'      => __( 'Demo site', 'ropaolle' ),
+            'type'       => 'text',
+		),		
+		array(
+            'id'         => 'field_portfolio_license',
+            'label'      => __( 'License', 'ropaolle' ),
+            'type'       => 'text',
+        ),
+    );
+
+    beans_register_post_meta( $fields, array( 'jetpack-portfolio' ), 'repostory_information_section', array(
+        'title' => __( 'Repostory information', 'ropaolle' ),
+    ) );
+
+}
