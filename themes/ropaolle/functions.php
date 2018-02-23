@@ -114,35 +114,77 @@ function my_custom_login() {
 add_action('login_head', 'my_custom_login');
 
 
-
 // Add custom fields
-
-
 add_action( 'admin_init', 'example_register_post_meta' );
 
 function example_register_post_meta() {
-// get_option( 'field_id', 'default_value' );
+
 	// https://www.getbeans.io/documentation/field-types/
     $fields = array(
         array(
-            'id'         => 'field_portfolio_github_repostory',
-            'label'      => __( 'GitHub Repostory', 'ropaolle' ),
-            'type'       => 'text',
+            'id'    => 'field_portfolio_github_repository',
+            'label' => __( 'GitHub Repository', 'ropaolle' ),
+            'type'  => 'text',
 		),
         array(
-            'id'         => 'field_portfolio_demo',
-            'label'      => __( 'Demo site', 'ropaolle' ),
-            'type'       => 'text',
+            'id'    => 'field_portfolio_demo',
+            'label' => __( 'Demo site', 'ropaolle' ),
+            'type'  => 'text',
 		),		
 		array(
-            'id'         => 'field_portfolio_license',
-            'label'      => __( 'License', 'ropaolle' ),
-            'type'       => 'text',
+            'id'    => 'field_portfolio_license',
+            'label' => __( 'License', 'ropaolle' ),
+            'type'  => 'text',
         ),
     );
 
-    beans_register_post_meta( $fields, array( 'jetpack-portfolio' ), 'repostory_information_section', array(
-        'title' => __( 'Repostory information', 'ropaolle' ),
+    beans_register_post_meta( $fields, array( 'jetpack-portfolio' ), 'repository_information_section', array(
+        'title' => __( 'Repository information', 'ropaolle' ),
     ) );
+
+}
+
+// Add portfolio badges
+function add_badge($field_id, $image_name, $alt, $add_link = false) {
+
+    $theme_path = get_stylesheet_directory_uri();
+    $field_text = beans_get_post_meta( $field_id, '' );
+
+	if (empty($field_text)) return;
+
+	if ($add_link) {
+	
+		beans_open_markup_e( 'beans_badge_link', 'a', array(
+			'class' => 'badge-link',
+			'href' => $field_text,
+			'target' => '_blank',
+		) );
+
+			beans_selfclose_markup_e( 'badge', 'img', array(
+				'class' => 'badge-img',
+				'src'   => $theme_path . '/' . $image_name,
+				'alt'   => __( $alt, 'ropaolle' ),
+			) );
+
+		beans_close_markup_e( 'beans_badge_link', 'a' );
+	
+	} else {
+
+        beans_selfclose_markup_e( 'badge', 'img', array(
+            'class' => 'badge-img',
+            'src'   => $theme_path . '/' . $image_name,
+            'alt'   => __( $alt, 'ropaolle' ),
+        ) );
+		
+	}
+}
+
+beans_add_smart_action( 'beans_add_portfolio_badges', 'beans_do_add_portfolio_badges' );
+
+function beans_do_add_portfolio_badges() {
+
+    add_badge('field_portfolio_github_repository', 'badge-repository.svg', 'GitHub repository', true);
+    add_badge('field_portfolio_demo', 'badge-demo.svg', 'GitHub Pages', true);
+    add_badge('field_portfolio_license', 'badge-license-mit.svg', 'MIT License', false);
 
 }
