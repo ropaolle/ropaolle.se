@@ -32,7 +32,7 @@ function ropaolle_setup_document() {
 	beans_remove_action( 'beans_breadcrumb' );
 
 	// Archive
-	// beans_remove_output( 'beans_archive_title_text' );
+	beans_remove_output( 'beans_archive_title_text' );
 	
 	// Post meta
 	beans_remove_attribute( 'beans_post_meta', 'class', 'uk-subnav-line' );
@@ -56,6 +56,16 @@ function ropaolle_show_meta( $format ) {
 
 	return true;
 
+}
+
+// Modify the tags cloud widget
+add_filter( 'widget_tag_cloud_args', 'ropaolle_tag_cloud_font_sizes');
+
+function ropaolle_tag_cloud_font_sizes( array $args ) {
+    $args['smallest'] = '8';
+    $args['largest'] = '8';
+
+    return $args;
 }
 
 /**
