@@ -13,8 +13,12 @@
 ```bash
 bash ssh.sh # Connect with SSH
 bash push.sh # Copy files from local to remote
-cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle # Theme folder
 bash build.sh # Generera temafiler
+
+# Make them writable
+cd /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ropaolle
+sudo chown daemon:ropaolle ropaolle
+sudo chown daemon:ropaolle ropaolle/*
 ```
 
 ## Add html
