@@ -20,6 +20,26 @@ function beans_child_enqueue_uikit_assets() {
 }
 
 /**
+ * Setup document fragements, markups and attributes, based on setup in the Jenkins child theme.
+ *
+ * @since 1.1.0
+ */
+beans_add_smart_action( 'wp', 'ropaolle_setup_document' );
+
+function ropaolle_setup_document() {
+
+	// Post meta
+	beans_remove_attribute( 'beans_post_meta', 'class', 'uk-subnav-line' );
+	beans_remove_action( 'beans_post_meta_tags' );
+	beans_remove_action( 'beans_post_meta_categories' );
+	beans_remove_output( 'beans_post_meta_categories_prefix' );
+
+	// Read mor link
+	beans_add_attribute( 'beans_post_more_link', 'class', 'uk-button uk-button-large uk-button-primary' );
+
+}
+
+/**
  * Customize login
  *
  * @since 1.1.0
@@ -239,5 +259,59 @@ function ropaolle_force_layout() {
 	if ( get_post_type() === 'jetpack-portfolio' ) return 'sp_c';
 
     return beans_get_default_layout();
+
+}
+
+/**
+ * Customize posts
+ *
+ * @since 1.0.0
+ */
+
+// Modify beans post meta items (filter)
+beans_add_smart_action( 'beans_post_meta_items', 'ropaolle_post_meta_items' );
+
+function ropaolle_post_meta_items( $items ) {
+
+	// Remove author meta
+	// unset( $items['author'] );
+
+	// Remove comments meta
+	unset( $items['comments'] );
+	
+	// Add categories meta
+	$items['categories'] = 20;
+
+	return $items;
+
+}
+
+// Add post meta item date icon
+beans_add_smart_action( 'beans_post_meta_item_date_prepend_markup', 'ropaolle_post_meta_item_date_icon' );
+
+function ropaolle_post_meta_item_date_icon() {
+
+	echo beans_open_markup( 'ropaolle_post_meta_item_date_icon', 'i', 'class=uk-icon-clock-o uk-margin-small-right uk-text-muted' );
+	echo beans_close_markup( 'ropaolle_post_meta_item_date_icon', 'i' );
+
+}
+
+// Add post meta item categories icon
+beans_add_smart_action( 'beans_post_meta_item_categories_prepend_markup', 'ropaolle_post_meta_item_categories_icon' );
+
+function ropaolle_post_meta_item_categories_icon() {
+
+	echo beans_open_markup( 'ropaolle_post_meta_item_categories_icon', 'i', 'class=uk-icon-archive uk-margin-small-right uk-text-muted' );
+	echo beans_close_markup( 'ropaolle_post_meta_item_categories_icon', 'i' );
+
+}
+
+// Add post meta item author icon
+beans_add_smart_action( 'beans_post_meta_item_author_prepend_markup', 'ropaolle_post_meta_item_author_icon' );
+
+function ropaolle_post_meta_item_author_icon() {
+
+	echo beans_open_markup( 'ropaolle_post_meta_item_author_icon', 'i', 'class=uk-icon-user uk-margin-small-right uk-text-muted' );
+	echo beans_close_markup( 'ropaolle_post_meta_item_author_icon', 'i' );
 
 }
