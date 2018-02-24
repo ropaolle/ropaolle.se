@@ -1,8 +1,10 @@
 # Todo
 
 * [ ] Cron kör ej backup, måste daemon köra cron?
-* [ ] Portfolio - Fält: Demo, GitHub Repo - Batches?
-* [ ] ?
+* [ ] Portfolio short codes
+      -[Info 1](https://en.support.wordpress.com/portfolios/portfolio-shortcode/)
+      -[Info 2](http://para.llel.us/support/tutorials/how-to-use-the-salutation-portfolio-shortcode/)
+* [ ] Style on mobil: .type-jetpack-portfolio .tm-article-image img
 
 ## Info
 

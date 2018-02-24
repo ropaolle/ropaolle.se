@@ -28,6 +28,12 @@ beans_add_smart_action( 'wp', 'ropaolle_setup_document' );
 
 function ropaolle_setup_document() {
 
+	// Breadcrumb
+	beans_remove_action( 'beans_breadcrumb' );
+
+	// Archive
+	// beans_remove_output( 'beans_archive_title_text' );
+	
 	// Post meta
 	beans_remove_attribute( 'beans_post_meta', 'class', 'uk-subnav-line' );
 	beans_remove_action( 'beans_post_meta_tags' );
@@ -36,6 +42,19 @@ function ropaolle_setup_document() {
 
 	// Read mor link
 	beans_add_attribute( 'beans_post_more_link', 'class', 'uk-button uk-button-large uk-button-primary' );
+
+}
+
+// Show meta on post's and jetpack-portfolio's
+beans_add_filter( 'beans_pre_post_meta', 'ropaolle_show_meta' );
+
+function ropaolle_show_meta( $format ) {
+
+	$post_type = get_post_type();
+
+	if ('post' == $post_type || 'jetpack-portfolio' == $post_type) return false; 
+
+	return true;
 
 }
 
@@ -272,9 +291,6 @@ function ropaolle_force_layout() {
 beans_add_smart_action( 'beans_post_meta_items', 'ropaolle_post_meta_items' );
 
 function ropaolle_post_meta_items( $items ) {
-
-	// Remove author meta
-	// unset( $items['author'] );
 
 	// Remove comments meta
 	unset( $items['comments'] );
