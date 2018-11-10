@@ -124,9 +124,15 @@ https://ropaolle.se
 
 ### Step 5: Renew The Let's Encrypt Certificate
 
+[gcloud](https://console.cloud.google.com/compute/instancesDetail/zones/europe-west4-c/instances/wordpress-multisite-production-vm?project=ropaolle-wordpress-multisite)
+
 ```bash
 cd /opt/bitnami/letsencrypt
+sudo /opt/bitnami/ctlscript.sh stop
 sudo ./certbot-auto renew
+sudo /opt/bitnami/ctlscript.sh start
+
+# This is not working
 sudo crontab -e
   24  0 * * * /opt/bitnami/letsencrypt/certbot-auto renew
   16 12 * * * /opt/bitnami/letsencrypt/certbot-auto renew
