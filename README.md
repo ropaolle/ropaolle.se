@@ -1,8 +1,9 @@
 # Todo
 
+INFO: Wordpress-server nedtagen 2019-03-10.
+
+
 * [ ] Cron kör ej backup, måste daemon köra cron?
-* [ ] 
-* [ ] ?
 
 ## Info
 
