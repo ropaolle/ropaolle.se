@@ -9,15 +9,23 @@
 - [Install on Windows](https://gohugo.io/getting-started/installing/#windows)
 - [Themes](https://themes.gohugo.io/)
 
-## Skapa ny
+## Skapa ny site
 
 ```bash
-hugo new site ropaolle.se # Skapa ny site
-cd ropaolle.se
-git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke # Ladda ner tema
-echo 'theme = "ananke"' >> config.toml # Välj tema
-cd mysite && hugo server -D # Starta server
+hugo new site ropaolle && cd ropaolle
+
+# Add new theme
+git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+echo 'theme = "ananke"' >> config.toml
+
+# Add page
+hugo new posts/my-first-post.md
+
+# Starta server
+hugo server -D
 ```
+
+
 
 ## Powershell
 

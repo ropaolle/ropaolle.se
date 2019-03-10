@@ -1,0 +1,6 @@
+[submodule "ropaolle/themes/ananke"]
+	path = ropaolle/themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "ropaolle2/themes/hermit"]
+	path = ropaolle2/themes/hermit
+	url = https://github.com/Track3/hermit.git
