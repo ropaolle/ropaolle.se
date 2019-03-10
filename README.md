@@ -8,6 +8,15 @@
 - [Hugo](https://gohugo.io)
 - [Install on Windows](https://gohugo.io/getting-started/installing/#windows)
 - [Themes](https://themes.gohugo.io/)
+    - [Kube](https://themes.gohugo.io/kube/)
+    - [Hermite](https://themes.gohugo.io/hermit/)
+- [Github Emoji](https://gist.github.com/rxaviers/7360908) - E.g. `:gem:`.
+- [🍺 Unicode Character Finder](https://www.mclean.net.nz/ucf/) - Start from 1F300
+
+
+ 
+
+U+1F607
 
 ## Skapa ny site
 
