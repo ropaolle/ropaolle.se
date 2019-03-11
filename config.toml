@@ -1,7 +1,7 @@
 baseURL = "https://www.ropaolle.se"
-languageCode = "en-us"
-defaultContentLanguage = "en"
-title = "Hugo Hermit"
+languageCode = "sv-se"
+defaultContentLanguage = "sv"
+title = "RopaOlle.se"
 theme = "hermit"
 # enableGitInfo = true
 pygmentsCodefences  = true
@@ -14,7 +14,7 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
 # disqusShortname = "yourdiscussshortname"
 
 [author]
-  name = "John Doe"
+  name = "RopaOlle"
 
 [blackfriday]
   # hrefTargetBlank = true
@@ -36,8 +36,8 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
   # images = [""]
   themeColor = "#494f5c"
 
-  homeSubtitle = "A minimal and fast theme for Hugo."
-  footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+  homeSubtitle = "First we build the tools, then they build us..."
+  footerCopyright = ' &#183; <a href="https://opensource.org/licenses/MIT/" target="_blank" rel="noopener">The MIT License (MIT)</a>'
   # bgImg = ""  # Homepage background-image URL
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
@@ -53,24 +53,24 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
   # Check https://github.com/Track3/hermit#social-icons for more info.
   [[params.social]]
     name = "twitter"
-    url = "https://twitter.com/"
+    url = "https://twitter.com/ropaolle"
 
-  [[params.social]]
-    name = "instagram"
-    url = "https://instagram.com/"
+  # [[params.social]]
+  #   name = "instagram"
+  #   url = "https://instagram.com/"
 
   [[params.social]]
     name = "github"
-    url = "https://github.com/"
+    url = "https://github.com/ropaolle"
 
 [menu]
 
   [[menu.main]]
-    name = "Posts"
+    name = "Inlägg"
     url = "posts/"
     weight = 10
 
   [[menu.main]]
-    name = "About"
-    url = "about-hugo/"
+    name = "Om"
+    url = "om/"
     weight = 20
