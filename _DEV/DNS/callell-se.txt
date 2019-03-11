@@ -1,0 +1,24 @@
+$ORIGIN callell.se.
+$TTL 300
+@ SOA ns1.loopia.se. registry.loopia.se. (
+                                1552110121
+                                3H  ; Refresh after three hours
+                                1H  ; Retry after one hour
+                                1W  ; Expire after one week
+                                1D )    ; Minimum one day TTL
+
+@                               IN      3600    NS      ns1.loopia.se.
+@                               IN      3600    NS      ns2.loopia.se.
+
+@                               IN      3600    A       104.198.14.52
+@                               IN      3600    MX      10 mxa.mailgun.org.
+@                               IN      3600    MX      10 mxb.mailgun.org.
+@                               IN      3600    TXT     v=spf1 include:mailgun.org ~all
+
+*                               IN      3600    A       104.198.14.52
+
+email                           IN      3600    CNAME   mailgun.org.
+mailo._domainkey                IN      3600    TXT     k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCoyBfFM3pBSOOKUpXiuVMhArwWjMMgEzInsNkzZewb9eUmzeMXb0VR5yJHf+ylqdFdLJuHHK3SUNfCxYV3ltySNjYCUum+oQZR0aEYKudKcI4May90az7Uk1iejJp8hRM8JOZX1dPUpxR3Pvzk1KrGaV6/nvCv8YcKYQddqKlXEwIDAQAB
+support                         IN      3600    CNAME   desk.cs.zohohost.com.
+www                             IN      3600    CNAME   distracted-archimedes-96ac5e.netlify.com.
+
