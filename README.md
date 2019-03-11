@@ -19,14 +19,13 @@
 ```bash
 hugo new site ropaolle && cd ropaolle
 
-# Add new theme
+# Hermit theme
+git submodule add --force https://github.com/Track3/hermit.git themes/hermit
+
+# Ananke theme
 #git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
 #echo 'theme = "ananke"' >> config.toml
-git submodule add --force https://github.com/Track3/hermit.git themes/hermit
-echo 'theme = "hermit"' >> config.toml
-
-# Add page
-# hugo new posts/my-first-post.md # endast Ananke
+#hugo new posts/my-first-post.md # endast Ananke
 
 # Starta server
 hugo server -D
@@ -37,6 +36,10 @@ hugo server -D
 ```bash
 # Ny branch
 git checkout -b version-1.0.x
+
+# Submodules
+git clone --recurse-submodules -j8 git://github.com/foo/bar.git # Clone repo with modules
+git submodule update --init --recursive # Download
 ```
 
 ## Powershell
