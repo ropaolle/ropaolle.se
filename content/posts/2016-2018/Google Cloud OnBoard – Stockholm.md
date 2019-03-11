@@ -6,7 +6,9 @@ title: Google Cloud OnBoard – Stockholm
 
 Igår hölls [Google Cloud OnBoard](https://cloudplatformonline.com/2018-OnBoard-Stockholm.html?mkt_tok=eyJpIjoiWXpRMU4yRTNOREZqWWpVeiIsInQiOiJWZ2VUQlk0SWdkMDlhbmJCTUR4UThjQ2h0Qm9kN2RqTU9QMlZTWEhlWmw3MjZFcksyT2NoU0NlOGdSTkEyNTJLcmRubFRyME1NR3FUUWtUeUxrYXh5eFphSGdORHBTOTU2SEZjMVhTXC9mWllTc2R2Q3B0MnFQUFBTTHRROHc2bU8ifQ%3D%3D) - Stockholm vilket var ett lyckat och informativt heldagsevent inriktat på deras molntjänster. Under utbildningen gick Google igenom sju olika övningsscenarion vilka deltagarna i efterhand ska få tillgång till via [Qwiklabs.com](https://qwiklabs.com/), en utbildningstjänst Google nyligen tagit över.
 
-Jag väntar med spänning på övningsuppgifterna eftersom de tillåter oss att köra testuppgifter mot stora datamängder utan debitering, vilket annars kan vara extremt dyrt. Dessutom utlovades \$200 GCP-krediter om uppgifterna slkutfördes inom en vecka.
+Jag väntar med spänning på övningsuppgifterna eftersom de tillåter oss att köra testuppgifter mot stora datamängder utan debitering, vilket annars kan vara extremt dyrt. Dessutom utlovades $200 GCP-krediter om uppgifterna slutfördes inom en vecka.
+
+{{< figure src="/images/qwiklabs.jpg" alt="image" caption="Stockholm City Conference Center" >}}
 
 <!--more-->
 
@@ -26,4 +28,4 @@ Labbarna avklarade. Qwiklabs fungerade bra och labbarna erbjöd möjligheten att
 
 Hur som helst, nu är det klart.
 
-<img class="alignnone size-full wp-image-838" src="http://ropaolle.se/wp-content/uploads/2018/02/qwiklabs.png" alt="" width="749" height="785" />
+{{< figure src="/images/qwiklabs.png" alt="image" caption="Bevis..." >}}

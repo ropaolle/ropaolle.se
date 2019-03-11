@@ -1,6 +1,6 @@
 baseURL = "https://www.ropaolle.se"
-languageCode = "sv-se"
-defaultContentLanguage = "sv"
+languageCode = "en-us" # "sv-se"
+defaultContentLanguage = "en" # "sv"
 title = "RopaOlle.se"
 theme = "hermit"
 # enableGitInfo = true

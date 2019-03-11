@@ -1,5 +1,5 @@
 ---
-date: 2014-03-10
+#date: 2014-03-10
 title: Migrate to Hugo from Jekyll
 toc: true
 ---

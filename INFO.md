@@ -3,6 +3,9 @@
 - [ ] Flytta RopaOlle.se till Netlify.
 - [ ] MarkdownAllInOne removed.
 
+
+https://sourcethemes.com/academic/docs/writing-markdown-latex/#images
+
 ## Info
 
 - [Hugo](https://gohugo.io)
@@ -13,6 +16,7 @@
 - [Github Emoji](https://gist.github.com/rxaviers/7360908) - E.g. `:gem:`.
 - [🍺 Unicode Character Finder](https://www.mclean.net.nz/ucf/) - Start from 1F300
 - [Favicons](https://realfavicongenerator.net/)
+
 
 ## Skapa ny site
 
