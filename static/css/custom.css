@@ -1,0 +1,10 @@
+.logo {
+    right: 15px;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+}
+
+.site-branding svg {
+    vertical-align: -7px;
+}
