@@ -28,4 +28,4 @@ Labbarna avklarade. Qwiklabs fungerade bra och labbarna erbjöd möjligheten att
 
 Hur som helst, nu är det klart.
 
-{{< bundle-image name="qwiklabs.png" caption="Bevis..." >}}
+{{< bundle-image2 name="qwiklabs.png" caption="Bevis..." >}}
