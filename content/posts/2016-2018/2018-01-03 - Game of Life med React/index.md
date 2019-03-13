@@ -4,7 +4,7 @@ date: 2018-01-03
 title: Game of Life med React
 ---
 
-{{< figure src="/images/gol01.png" alt="image" class="right" caption="Game of Life" >}}
+{{< bundle-image2 name="gol01.png" alt="image" class="right" caption="Game of Life" >}}
 
 Detta är ett projekt med målet att testa användningen av HTML5-canvas tillsammans med React. Jag tittar närmare på hur man ritar direkt på canvasen, responsiv layout och hur detta implementeras tillsammans med React. Det är en typisk "single page app" skapad med Create-react-app. Knappar och formelement använder Material-UI, kanske lite overkill men varför inte.
 
@@ -46,9 +46,9 @@ Till knapplisten och select-komponenten för att välja antal celler används Ma
 
 `npm i material-ui@next material-ui-icons@next`
 
-{{< figure src="/images/gol02.png" alt="image" caption="Knapplist" >}}
+{{< bundle-image2 name="gol02.png" alt="image" caption="Knapplist" >}}
 
-{{< figure src="/images/gol03.png" alt="image" caption="Antal celler" >}}
+{{< bundle-image2 name="gol03.png" alt="image" caption="Antal celler" >}}
 
 ## Steg 4 - Bygg Game-of-life-komponenten
 

@@ -1,7 +1,7 @@
 ---
 author: "Olof Sjögren"
 date: 2017-02-16
-title: A Simple Component
+title: Image bundles
 draft: true
 ---
 
