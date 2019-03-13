@@ -4,7 +4,7 @@ date: 2018-03-29
 title: Tellstick IOT Hub
 ---
 
-{{< figure src="/images/tellstick02.png" alt="image" class="right" caption="Basic GUI" >}}
+{{< bundle-image2 name="tellstick02.png" alt="image" class="right" caption="Basic GUI" >}}
 
 Tellstick Znet Lite är en utmärkt liten IOT-hub för hemmabruk. Tyvärr är den fortfarande delvis beroende av Telldus tjänst. Förprogrammerade på/avslag av lampor fungerar även utan internetaccess, men du kan inte kommunicera med dina enheter, t.ex. tända/släcka lampor om deras tjänst eller internet accessen är nere.
 
@@ -20,7 +20,7 @@ Klienten är byggd med Create-react-app och använder Axios för att kommunicera
 
 Klienten är byggd med CRA och den statiska html-koden servas av Apache.
 
-{{< figure src="/images/tellstick01.png" alt="image" class="right" caption="Sensorer" >}}
+{{< bundle-image2 name="tellstick01.png" alt="image" class="right" caption="Sensorer" >}}
 
 ### Proxy/API (Tellstick Znet Lite Local API)
 

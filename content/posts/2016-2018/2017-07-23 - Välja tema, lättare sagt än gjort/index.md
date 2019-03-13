@@ -19,6 +19,6 @@ I det första undertemat lade jag till följande funktioner i fiunctions.php.
 - Add login/logout link to the primary menu
 - Customize login page
 
-&nbsp;{{< figure src="/images/valja-tema-01.png" alt="image">}}&nbsp;
+{{< bundle-image2 name="valja-tema-01.png" alt="image" >}}
 
-{{< figure src="/images/valja-tema-02.jpg" alt="image">}}
+{{< bundle-image name="valja-tema-02.jpg" alt="image" >}}

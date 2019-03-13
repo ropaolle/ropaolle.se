@@ -6,5 +6,6 @@
 }
 
 .site-branding svg {
-    vertical-align: -7px;
+    vertical-align: -0.375em;
+    margin-right: 0.4em;
 }

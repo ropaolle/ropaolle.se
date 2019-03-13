@@ -4,7 +4,7 @@ date: 2016-11-21
 title: UCP ClickCall Demo
 ---
 
-{{< figure src="/images/clickcall01.png" alt="image" class="right" caption="What is this?" >}}
+{{< bundle-image2 name="clickcall01.png" alt="image" class="right" caption="What is this?" >}}
 
 Basic demo that uses the new ClickCall web service that is supported by Ericsson-LG iPECS UCP.
 
@@ -26,4 +26,4 @@ The source code is available on <a href="https://github.com/ropaolle/ucp-clickca
 
 A working demo and some documetation can be found on the page http://www.licab.se/clickcall/. If you have anny comments please use the [issue queue](https://github.com/ropaolle/ucp-clickcall-demo/issues).
 
-{{< figure src="/images/clickcall02.png" alt="image" caption="UCP ClickCall Demo" >}}
+{{< bundle-image name="clickcall02.png" alt="image" caption="UCP ClickCall Demo" >}}

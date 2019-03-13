@@ -8,7 +8,7 @@ Igår hölls [Google Cloud OnBoard](https://cloudplatformonline.com/2018-OnBoard
 
 Jag väntar med spänning på övningsuppgifterna eftersom de tillåter oss att köra testuppgifter mot stora datamängder utan debitering, vilket annars kan vara extremt dyrt. Dessutom utlovades $200 GCP-krediter om uppgifterna slutfördes inom en vecka.
 
-{{< figure src="/images/qwiklabs.jpg" alt="image" caption="Stockholm City Conference Center" >}}
+{{< bundle-image name="qwiklabs.jpg" caption="Stockholm City Conference Center" >}}
 
 <!--more-->
 
@@ -28,4 +28,4 @@ Labbarna avklarade. Qwiklabs fungerade bra och labbarna erbjöd möjligheten att
 
 Hur som helst, nu är det klart.
 
-{{< figure src="/images/qwiklabs.png" alt="image" caption="Bevis..." >}}
+{{< bundle-image name="qwiklabs.png" caption="Bevis..." >}}
