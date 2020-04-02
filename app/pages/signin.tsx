@@ -9,13 +9,11 @@ import { useAuth } from '../lib/useAuth';
 import { useTranslation } from '../lib/useTranslation';
 import { Text, /* Checkbox,  */ SubmitButton } from '../components/Fields';
 import { Form } from 'react-bootstrap';
-import { useWebsocket } from '../lib/useWebsocket';
 
 const Signin: NextPage = () => {
   const [t] = useTranslation();
   const [displayError, setDisplayError] = useState(false);
   const { isAuthenticated, signin, user, isLoading, error } = useAuth();
-  const [{ ws }] = useWebsocket();
 
   const trans = 'signin.form';
 
@@ -35,9 +33,6 @@ const Signin: NextPage = () => {
 
     // if the user is logged in, redirect to the homepage
     if (isAuthenticated) {
-      if (ws && typeof ws.send === 'function') {
-        ws.send(JSON.stringify({ action: 'login', email: user.email, name: user.name }));
-      }
       Router.push('/');
     }
   }, [isAuthenticated, error]);

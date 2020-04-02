@@ -3,14 +3,13 @@
 ## Dependencies
 
 ```sh
-yarn add @keystonejs/app-next @keystonejs/list-plugins apollo-boost dotenv express-session graphql isomorphic-unfetch mailgun-js react react-apollo react-bootstrap react-dom react-js-pagination react-toast-notifications date-fns formik react-select
+yarn add @keystonejs/app-next @keystonejs/list-plugins apollo-boost dotenv express-session graphql isomorphic-unfetch mailgun-js react react-apollo react-bootstrap react-dom react-js-pagination react-toast-notifications date-fns formik react-select yup date-fns-timezone
 #connect-mongo
-#date-fns-timezone
 #express-ws
 #node-cron
 #socket.io
 #twilio
-#yup
+
 ```
 
 ## devDependencies
