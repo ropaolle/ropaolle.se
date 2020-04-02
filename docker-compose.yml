@@ -1,0 +1,53 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo:4.2.2-bionic
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: kldfg789
+      # Used by docker-entrypoint-initdb.d
+      MONGO_INITDB_DATABASE: keystonejs
+      MONGO_INITDB_ADMIN_USERNAME: olle
+      MONGO_INITDB_ADMIN_PASSWORD: 9dksert9we9
+    volumes:
+      - "./mongodb/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/"  
+      # Cannot save db on Windows, write access errors  
+      - ./mongodbdata:/data/db
+    # ports: 
+    #   - "27017:27017"
+
+  #mongo-express:
+  #  image: mongo-express
+  #  restart: always
+  #  ports:
+  #    - "8081:8081"
+  #  environment:
+  #    ME_CONFIG_MONGODB_ADMINUSERNAME: root
+  #    ME_CONFIG_MONGODB_ADMINPASSWORD: kldfg789
+
+  keystone:
+    image: ropaolle/my-cool-keystone-app:dev
+    #build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    environment: 
+      MONGO_URI: mongodb://olle:9dksert9we9@mongo:27017/keystonejs  
+      HOST: https://nginx.ropaolle.se
+      WS: wss://nginx.ropaolle.se
+      NODE_ENV: production keystone start
+      VIRTUAL_HOST: nginx.ropaolle.se
+      VIRTUAL_PORT: 3000
+      LETSENCRYPT_HOST: nginx.ropaolle.se
+      LETSENCRYPT_EMAIL: ropaolle@gmail.com
+    depends_on: 
+      - mongo  
+    
+networks:
+  default:
+    external:
+      name: letsencrypt_default
+      

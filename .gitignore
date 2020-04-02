@@ -1,0 +1,7 @@
+node_modules/
+
+# dists and apps
+dist/
+.next
+_DEL/
+.env

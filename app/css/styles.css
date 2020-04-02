@@ -1,0 +1,32 @@
+body, html, #__next {
+  height: 100%;
+  display: grid;
+}
+
+a {
+  color: #067df7;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+ h2 {
+  margin-top: 2rem;
+} 
+
+/* SVG Spinner */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(359deg); }
+}
+
+#svgSpinner {
+  animation: spin 2s linear infinite;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+}
