@@ -80,58 +80,7 @@ module.exports.extendGraphQLSchema = {
         'type SettingJson { id: ID, mid: JSON, name: String, value: JSON, updatedAt: DateTime }',
     },
   ],
-  queries: [
-    {
-      schema: 'notificationDestinations: Notifications',
-      resolver: async (item, { name }, context, info, { query, access }) => {
-        const result = { emails: [], sms: [] };
-
-        // Get users and settings
-        const {
-          errors,
-          data: { allUsers, allSettings },
-        } = await query(
-          `query {
-              allUsers(first: 10) {
-                email
-                mobile
-                smsNotifications
-                emailNotifications
-              }    
-              allSettings(where: { name: "settings" }) {
-                value
-              }      
-            }`
-        );
-
-        if (errors) {
-          // TODO: Handel multiple errors
-          throw errors[0];
-        }
-
-        const { testMode, testEmail, testSms } = allSettings[0].value;
-
-        switch (testMode) {
-          case 'test':
-            result.emails = [testEmail];
-            result.sms = [testSms];
-            break;
-          case 'normal':
-            allUsers.forEach(({ email, mobile, smsNotifications, emailNotifications }) => {
-              if (smsNotifications && mobile) {
-                result.sms.push(mobile);
-              }
-              if (emailNotifications && email) {
-                result.emails.push(email);
-              }
-            });
-            break;
-        }
-
-        return result;
-      },
-    },
-  ],
+  queries: [],
   mutations: [
     {
       schema: 'signup(data: UserCreateInput!): Boolean',

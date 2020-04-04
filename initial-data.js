@@ -1,3 +1,5 @@
+const logToDb = require('./lib/logToDb');
+
 module.exports = async (keystone) => {
   const {
     data: {
@@ -42,5 +44,8 @@ module.exports = async (keystone) => {
         },
       ],
     });
+    logToDb('Database initialized.');
   }
+
+  logToDb('Server started.');
 };

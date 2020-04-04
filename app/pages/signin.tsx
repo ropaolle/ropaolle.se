@@ -13,7 +13,7 @@ import { Form } from 'react-bootstrap';
 const Signin: NextPage = () => {
   const [t] = useTranslation();
   const [displayError, setDisplayError] = useState(false);
-  const { isAuthenticated, signin, user, isLoading, error } = useAuth();
+  const { isAuthenticated, signin, isLoading, error } = useAuth();
 
   const trans = 'signin.form';
 

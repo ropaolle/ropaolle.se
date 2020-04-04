@@ -38,7 +38,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
     checkSession();
   }, []);
 
-  const log = data => {
+  const log = (data) => {
     client.mutate({
       mutation: CREATE_LOG,
       variables: {
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
         if (error) throw error;
         setUser(authenticatedUser);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         throw error;
       })
@@ -100,7 +100,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
           setUser(authenticateUserWithPassword.item);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         throw error;
       })
@@ -129,7 +129,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
           setUser(null);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         throw error;
       })
@@ -153,7 +153,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
         if (error) throw error;
         log({ message: `${email} signed up.` });
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         throw error;
       })
@@ -177,7 +177,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
         if (error) throw error;
         log({ message: `${email} requested new password.` });
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         throw error;
       })
@@ -201,7 +201,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
         if (error) throw error;
         return resetPassword;
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error.message);
         throw error;
       })

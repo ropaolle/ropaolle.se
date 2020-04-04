@@ -19,7 +19,7 @@ export const picProps = (object, propList = []) =>
     return acc;
   }, {});
 
-export const formatJSON = json => {
+export const formatJSON = (json) => {
   try {
     return JSON.stringify(JSON.parse(json), null, 2);
   } catch (error) {
