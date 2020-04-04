@@ -1,13 +1,16 @@
 # Ropaolle.se
 
 ## TODO
-
+- [ ] from: `Teleoffice MVNO API ✔ <${process.env.SMTP_USER}>`,
 - Apollo
   - [ ] Use Apollo for local state.
-  - [ ] Use Apollo chace.
+  - [ ] Use Apollo cache.
   - [ ] Använd alltid id i alla query och mutations för att cache ska fungera.
   - [ ] Use [Optimistic UI](https://www.apollographql.com/docs/react/performance/optimistic-ui/)
-  - [ ] [Schema directives](https://www.apollographql.com/docs/graphql-tools/schema-directives/), t.ex. [camelCase](https://github.com/Saeris/graphql-directives).
+
+## Nice to have
+
+- [ ] [Schema directives](https://www.apollographql.com/docs/graphql-tools/schema-directives/), t.ex. [camelCase](https://github.com/Saeris/graphql-directives).
 
 ## Info
 

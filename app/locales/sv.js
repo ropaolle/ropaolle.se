@@ -167,7 +167,7 @@ const translate = {
   signup: {
     title: 'Skapa konto',
     emailSent:
-      'Ett nytt konto har skapats och instruktioner om hur du verifierar din E-post har skickats till {{email}}.',
+      'Ett nytt konto har skapats och instruktioner om hur du verifierar din E-post har skickats.',
     emailExists: 'E-postadress används redan.',
     form: {
       firstName: {
@@ -196,14 +196,8 @@ const translate = {
   },
   forgotPassword: {
     title: 'Återställ lösenord',
-    emailSent: 'Ett E-post med ytterligare instruktioner har skickats till {{email}}.',
-    emailMissing: {
-      text: 'Adressen finns inte registrerad. Vill du {{link}}',
-      link: {
-        href: 'signup',
-        text: 'skapa ett nytt konto?',
-      },
-    },
+    emailSent: 'Ett E-post med ytterligare instruktioner har skickats.',
+    emailError: 'E-post kunde inte skickas!',
     form: {
       email: {
         title: 'E-post',

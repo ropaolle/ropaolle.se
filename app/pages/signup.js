@@ -11,12 +11,14 @@ const Signup = () => {
   const [t] = useTranslation();
   const [displayMessage, setDisplayMessage] = useState(false);
   const [displayError, setDisplayError] = useState(false);
-  const { error, signup, isLoading } = useAuth();
+  const [isSending, setIsSending] = useState(false);
+  const { error, signup } = useAuth();
   const trans = 'signup.form';
 
   useEffect(() => {
     if (error && error.includes('E11000')) {
-      setDisplayError(t('signup.emailExists'));
+      // INFO: Do not reveal if an email exists or not.
+      setDisplayMessage(t(`signup.emailSent`));
     } else {
       setDisplayError(error);
     }
@@ -45,8 +47,13 @@ const Signup = () => {
             .required(t(`${trans}.password.required`)),
         })}
         onSubmit={async (values /* , formikBag */) => {
-          await signup(values);
-          setDisplayMessage(t(`signup.emailSent`, null, { email: values.email }));
+          setIsSending(true);
+          try {
+            await signup(values);
+            setDisplayMessage(t(`signup.emailSent`));
+          } finally {
+            setIsSending(false);
+          }
         }}
       >
         <FormikForm>
@@ -58,7 +65,7 @@ const Signup = () => {
           <Text name="password" type="password" trans={trans} />
           <Form.Text className="text-right text-danger">{displayError}</Form.Text>
           <Form.Text className="text-right text-success">{displayMessage}</Form.Text>
-          <SubmitButton size="lg" isLoading={isLoading} trans={trans} />
+          <SubmitButton size="lg" isLoading={isSending} trans={trans} />
         </FormikForm>
       </Formik>
       <style jsx>{`

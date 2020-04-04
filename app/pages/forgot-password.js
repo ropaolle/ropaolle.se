@@ -12,17 +12,17 @@ const ForgotPassword = () => {
   const [t] = useTranslation();
   const [displayMessage, setDisplayMessage] = useState(false);
   const [displayError, setDisplayError] = useState(false);
-  const { error, forgotPassword, isLoading } = useAuth();
+  const [isSending, setIsSending] = useState(false);
+  const { error, forgotPassword } = useAuth();
   const trans = 'forgotPassword.form';
 
   useEffect(() => {
+    console.log('error', error);
     if (error && error.includes('Email does not exist')) {
-      setDisplayMessage(
-        t('forgotPassword.emailMissing.text', null, {
-          year: new Date().getFullYear(),
-          link: t('forgotPassword.emailMissing.link'),
-        })
-      );
+      // INFO: Do not reveal if an email exists or not.
+      setDisplayMessage(t(`forgotPassword.emailSent`));
+    } else if (error && error.includes('Could not send email')) {
+      setDisplayMessage(t('forgotPassword.emailError.text'));
     } else {
       setDisplayError(error);
     }
@@ -47,15 +47,20 @@ const ForgotPassword = () => {
                 .required(t(`${trans}.email.required`)),
             })}
             onSubmit={async (values /* formikBag */) => {
-              await forgotPassword(values);
-              setDisplayMessage(t(`forgotPassword.emailSent`, null, { email: values.email }));
+              setIsSending(true);
+              try {
+                await forgotPassword(values);
+                setDisplayMessage(t(`forgotPassword.emailSent`));
+              } finally {
+                setIsSending(false);
+              }
             }}
           >
             <FormikForm className="register-form999">
               <Text name="email" type="email" trans={trans} />
               <Form.Text className="text-right text-danger">{displayError}</Form.Text>
               <Form.Text className="text-right text-success">{displayMessage}</Form.Text>
-              <SubmitButton isLoading={isLoading} trans={trans} />
+              <SubmitButton isLoading={isSending} trans={trans} />
             </FormikForm>
           </Formik>
         </div>

@@ -14,7 +14,7 @@ const ResetPassword = () => {
     query: { token },
   } = useRouter();
   const [displayError, setDisplayError] = useState(false);
-  const { isAuthenticated, error, resetPassword, isLoading, user, signin } = useAuth();
+  const { isAuthenticated, error, resetPassword, isLoading, signin } = useAuth();
   const [t] = useTranslation();
   const trans = 'resetPassword.form';
 

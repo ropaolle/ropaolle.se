@@ -167,7 +167,7 @@ const translate = {
   signup: {
     title: 'Create account',
     emailSent:
-      'A new account have been created and instruction of how to validate your Email have been sent to {{email}}.',
+      'A new account have been created and instruction of how to validate your Email have been sent.',
     emailExists: 'Email is already used.',
     form: {
       firstName: {
@@ -196,14 +196,8 @@ const translate = {
   },
   forgotPassword: {
     title: 'Recover password',
-    emailSent: 'AN Email with further instructions have been sent to {{email}}.',
-    emailMissing: {
-      text: 'Email is not registered. Do you like to {{link}}',
-      link: {
-        href: 'signup',
-        text: 'create a new account?',
-      },
-    },
+    emailSent: 'An Email with further instructions have been sent.',
+    emailError: 'Email could not be sent!',
     form: {
       email: {
         title: 'Email',
