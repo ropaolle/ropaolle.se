@@ -25,19 +25,11 @@ const translate = {
     signOut: 'Logga ut',
   },
   footer: {
-    firstRow: '3CX-testprob för {{systembolaget}}, copyright © {{year}}, {{ropaolle}}.',
-    systembolaget: {
-      href: 'https://www.systembolaget.se',
-      text: 'Systembolaget.se',
-      title: 'Systembolaget.se',
-      target: '_blank',
-    },
+    firstRow: '{{ropaolle}}, copyright © {{year}}.',
     ropaolle: {
       href: 'https://www.ropaolle.se',
       text: 'RopaOlle.se',
     },
-    secondRow: 'Anslutna: {{users}}',
-    anonymous: 'anonyma ({{anonymous}})',
   },
   statusIcons: {
     unknown: { title: 'Unknown', color: '#ffc107', icon: 'QuestionCircleIcon', text: 'Unknown' },

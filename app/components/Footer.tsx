@@ -8,7 +8,6 @@ export const Footer = () => {
       <div>
         {t('footer.firstRow', null, {
           year: new Date().getFullYear(),
-          systembolaget: t('footer.systembolaget'),
           ropaolle: t('footer.ropaolle'),
         })}
       </div>
