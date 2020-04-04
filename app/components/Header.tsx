@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Navbar, Nav, Dropdown } from 'react-bootstrap';
-import { ShieldAltIcon } from './FontAwsomeIcons';
-import { StatusIcon } from './StatusIcon';
+import { RopaOlleIcon } from './FontAwsomeIcons';
+// import { StatusIcon } from './StatusIcon';
 import { useTranslation } from '../lib/useTranslation';
 import { ChangeLanguage } from './ChangeLanguage';
 
@@ -16,7 +16,7 @@ export const Header = ({ user }: { user: any }) => {
       <div>
         <Link href="/" passHref>
           <Navbar.Brand className="d-flex align-items-center">
-            <ShieldAltIcon size="36" />
+            <RopaOlleIcon size="36" />
             <div className="pl-2">{t('title')}</div>
           </Navbar.Brand>
         </Link>

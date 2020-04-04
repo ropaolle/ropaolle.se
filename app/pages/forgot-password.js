@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Formik, Form as FormikForm } from 'formik';
 import * as Yup from 'yup';
 import { Form } from 'react-bootstrap';
-import { ShieldAltIcon } from '../components/FontAwsomeIcons';
+import { RopaOlleIcon } from '../components/FontAwsomeIcons';
 import { LayoutSignin } from '../components/LayoutSignin';
 import { useTranslation } from '../lib/useTranslation';
 import { Text, SubmitButton } from '../components/Fields';
@@ -32,7 +32,7 @@ const ForgotPassword = () => {
     <LayoutSignin title={t('forgotPassword.title')}>
       <div className="pt-3 pb-3">
         <h5 className="d-flex justify-content-center align-items-center">
-          <ShieldAltIcon className="text-dark mr-1" size="32" /> {t('title')}
+          <RopaOlleIcon className="text-dark mr-1" size="32" /> {t('title')}
         </h5>
         <div className="form-wrapper bg-white p-4 shadow">
           <h4>{t('forgotPassword.title')}</h4>

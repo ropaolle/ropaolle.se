@@ -4,9 +4,9 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { NextApp } = require('@keystonejs/app-next');
-const initialiseData = require('./initial-data');
-
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
+const { extendGraphQLSchema } = require('./graphql/extendGraphQLSchema');
+const initialiseData = require('./initial-data');
 
 const keystone = new Keystone({
   name: 'RopaOlle.se',
@@ -24,6 +24,12 @@ const keystone = new Keystone({
 
 const UsersSchema = require('./lists/Users.js');
 keystone.createList('User', UsersSchema);
+const LogsSchema = require('./lists/Logs.js');
+keystone.createList('Log', LogsSchema);
+const ResetPasswordsSchema = require('./lists/ResetPasswords.js');
+keystone.createList('ResetPassword', ResetPasswordsSchema);
+
+keystone.extendGraphQLSchema(extendGraphQLSchema);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,

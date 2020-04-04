@@ -3,7 +3,7 @@ import { Formik, Form as FormikForm } from 'formik';
 import Router, { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { Form } from 'react-bootstrap';
-import { ShieldAltIcon } from '../components/FontAwsomeIcons';
+import { RopaOlleIcon } from '../components/FontAwsomeIcons';
 import { LayoutSignin } from '../components/LayoutSignin';
 import { useTranslation } from '../lib/useTranslation';
 import { Text, SubmitButton } from '../components/Fields';
@@ -18,7 +18,7 @@ const ResetPassword = () => {
   const [t] = useTranslation();
   const trans = 'resetPassword.form';
 
-  const errorIncludes = string => error && error.includes(string);
+  const errorIncludes = (string) => error && error.includes(string);
 
   useEffect(() => {
     if (errorIncludes('missing') || errorIncludes('invalid')) {
@@ -38,7 +38,7 @@ const ResetPassword = () => {
     <LayoutSignin title={t('resetPassword.title')}>
       <div className="pt-3 pb-3">
         <h5 className="d-flex justify-content-center align-items-center">
-          <ShieldAltIcon className="text-dark mr-1" size="32" /> {t('title')}
+          <RopaOlleIcon className="text-dark mr-1" size="32" /> {t('title')}
         </h5>
         <div className="form-wrapper bg-white p-4 shadow">
           <h4>{t('resetPassword.title')}</h4>
