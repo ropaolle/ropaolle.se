@@ -5,6 +5,8 @@ const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { NextApp } = require('@keystonejs/app-next');
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
+const expressSession = require('express-session');
+const MongoStore = require('connect-mongo')(expressSession);
 const { extendGraphQLSchema } = require('./graphql/extendGraphQLSchema');
 const initialiseData = require('./initial-data');
 
@@ -12,8 +14,8 @@ const keystone = new Keystone({
   name: 'RopaOlle.se',
   adapter: new Adapter({ mongoUri: process.env.MONGO_URI }),
   onConnect: initialiseData,
+  sessionStore: !process.env.BUILD_STAGE ? new MongoStore({ url: process.env.MONGO_URI }) : null,
   // TODO: Production
-  // sessionStore: !process.env.BUILD_STAGE ? new MongoStore({ url: process.env.MONGO_URI }) : null,
   // cookieSecret: process.env.COOKIE_SECRET,
   // cookieSameSite: true,
   // cookie: {

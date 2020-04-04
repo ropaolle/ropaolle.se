@@ -1,12 +1,11 @@
 # Ropaolle.se
 
 ## TODO
-- [ ] from: `Teleoffice MVNO API ✔ <${process.env.SMTP_USER}>`,
-- Apollo
-  - [ ] Use Apollo for local state.
-  - [ ] Use Apollo cache.
-  - [ ] Använd alltid id i alla query och mutations för att cache ska fungera.
-  - [ ] Use [Optimistic UI](https://www.apollographql.com/docs/react/performance/optimistic-ui/)
+
+- [ ] Remeber me, sessin age = 0.
+- [ ] Use Apollo for local state.
+- [ ] Use Apollo cache.
+- [ ] Use Apollo [Optimistic UI](https://www.apollographql.com/docs/react/performance/optimistic-ui/)
 
 ## Nice to have
 
