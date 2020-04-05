@@ -20,14 +20,13 @@ const userFragment = `
   langCode
 `;
 
-export const AuthProvider = ({ children, initialUser = null }) => {
+export const AuthProvider = ({ children }) => {
   const client = useApolloClient();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState(initialUser);
+  const [user, setUser] = useState(null);
 
-  // TODO: Updates lastAccess each time a user access a new route. I.e. not if a page is
-  // reloaded or the user stays on the same path. Not so pretty. Should be moved and refactored.
+  // Updates lastAccess when the page is loaded or each time a new route is accessed.
   const { pathname } = useRouter();
   const [updateUser] = useMutation(UPDATE_USER);
   useEffect(() => {
@@ -35,7 +34,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
       updateUser({
         variables: { id: user.id, data: { lastAccess: new Date() } },
       });
-  }, [pathname]);
+  }, [pathname, user]);
 
   useEffect(() => {
     checkSession();
@@ -58,7 +57,6 @@ export const AuthProvider = ({ children, initialUser = null }) => {
       })
       .then(({ data: { authenticatedUser }, error }) => {
         if (error) throw error;
-        // TODO: Update cache
         client.cache.writeQuery({
           query: GET_USER,
           data: { authenticatedUser },

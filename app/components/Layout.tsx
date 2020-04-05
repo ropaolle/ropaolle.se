@@ -27,22 +27,20 @@ export const Layout = ({ children, title, mainClass, loading }: Props) => {
             <Header user={user} />
           </header>
           <main className={mainClass}>
-            <Container>
-              {loading ? (
-                <div className="overlay">
-                  <div className="overlay-content">
-                    <SpinnerIcon color="#eee" size="36" />
-                  </div>
-                </div>
-              ) : (
-                children
-              )}
-            </Container>
+            <Container>{children}</Container>
           </main>
           <footer>
             <Footer />
           </footer>
         </div>
+
+        {loading && (
+          <div className="overlay">
+            <div className="overlay-content">
+              <SpinnerIcon color="#eee" size="36" />
+            </div>
+          </div>
+        )}
 
         <style jsx>{`
           .wrapper {

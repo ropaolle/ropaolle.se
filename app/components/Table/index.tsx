@@ -1,58 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { Table as BootstrapTable } from 'react-bootstrap';
-import { useQuery } from 'react-apollo';
 import { Pager } from './Pager';
 import { Header } from './Header';
 import { CheckBox } from './CheckBox';
 
 interface TableProps {
-  query: any;
+  data: any;
+  fetchMore: any;
+  defaultPageSize?: number;
   tableName: string;
   translation: any;
   columns: any;
   getRow: any;
-  selected: any;
-  setSelected: any;
-  onLoading?: any;
-  onError?: any;
-  onSelect?: any;
+  selected?: any;
+  setSelected?: any;
 }
 
 export const Table: React.SFC<TableProps> = ({
-  query,
+  data,
+  fetchMore,
+  defaultPageSize,
   tableName,
   translation,
   columns,
   getRow,
   selected,
   setSelected,
-  onLoading,
-  // onError,
-  // onSelect,
 }) => {
   const [activePage, setActivePage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(defaultPageSize || 20);
   const [allSelected, setAllSelected] = useState(false);
   const [sort, setSort] = useState({ ascending: false, field: columns[0] });
-
   const useCheckBoxes = typeof setSelected === 'function';
-
-  // Load data
-  const sortString = `${sort.field}_${sort.ascending ? 'ASC' : 'DESC'}`;
-  // TODO: Apollo loadMore
-  const { data, loading, error } = useQuery(query(pageSize, activePage, sortString), {
-    fetchPolicy: 'cache-and-network',
-  });
-
-  // https://reactjs.org/blog/2020/02/26/react-v16.13.0.html#warnings-for-some-updates-during-render
-  useEffect(() => {
-    // onLoading(loading);
-  }, [loading]);
-
   const rowTable = `all${tableName}`;
   const countTable = `_all${tableName}Meta`;
   const rows = (data && data[rowTable]) || [];
   const count = (data && data[rowTable] && data[countTable].count) || 0;
+
+  useEffect(() => {
+    fetchMore({
+      variables: {
+        first: pageSize,
+        skip: (activePage - 1) * pageSize,
+        orderBy: `${sort.field}_${sort.ascending ? 'ASC' : 'DESC'}`,
+      },
+      updateQuery: (prev: any, { fetchMoreResult }: any) => {
+        if (!fetchMoreResult) return prev;
+
+        return Object.assign({}, prev, {
+          [rowTable]: fetchMoreResult[rowTable],
+          _allLogsMeta: fetchMoreResult._allLogsMeta,
+        });
+      },
+    });
+  }, [activePage, pageSize, sort]);
 
   const handleSortHeaderClick = (field: String) => {
     if (sort.field === field) {

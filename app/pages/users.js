@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useQuery } from 'react-apollo';
 import { Layout } from '../components/Layout';
 import { localeDate } from '../lib/utils';
 import { SpinnerIcon } from '../components/FontAwsomeIcons';
@@ -8,8 +9,20 @@ import { Table } from '../components/Table';
 
 const Users = () => {
   const [t] = useTranslation();
-  const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState([]);
+  const translation = 'users';
+  const tableName = 'Users';
+  const columns = ['firstName', 'isAdmin', 'lastAccess'];
+  const defaultPageSize = 20;
+
+  const { data, loading, fetchMore } = useQuery(USERS_PAGINATED, {
+    variables: {
+      first: defaultPageSize,
+      // skip: 0,
+      // orderBy: 'firstName_DESC',
+    },
+    // fetchPolicy: 'cache-and-network',
+  });
 
   const getRow = ({ id, name, lastAccess, isAdmin }, checkBox) => (
     <tr key={id}>
@@ -28,14 +41,15 @@ const Users = () => {
       </div>
 
       <Table
-        query={USERS_PAGINATED}
-        tableName="Users"
-        translation={'users'}
-        columns={['firstName', 'isAdmin', 'lastAccess']}
+        data={data}
+        fetchMore={fetchMore}
+        defaultPageSize={defaultPageSize}
+        tableName={tableName}
+        translation={translation}
+        columns={columns}
         selected={selected}
         setSelected={setSelected}
         getRow={getRow}
-        onLoading={setLoading}
       />
     </Layout>
   );

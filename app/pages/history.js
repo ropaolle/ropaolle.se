@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React /* , { useState } */ from 'react';
 import { Accordion, useAccordionToggle } from 'react-bootstrap';
+import { useQuery } from 'react-apollo';
 import { Layout } from '../components/Layout';
 import { localeDate, formatJSON } from '../lib/utils';
 import { SpinnerIcon } from '../components/FontAwsomeIcons';
 import { useTranslation } from '../lib/useTranslation';
 import { LOGS_PAGINATED } from '../graphql/logs';
 import { Table } from '../components/Table';
-import { useAuth } from '../lib/useAuth';
 
 const CustomToggle = ({ children, eventKey }) => {
   const decoratedOnClick = useAccordionToggle(eventKey, () => {});
@@ -19,9 +19,20 @@ const CustomToggle = ({ children, eventKey }) => {
 
 const History = () => {
   const [t] = useTranslation();
-  const [loading, setLoading] = useState(false);
   // const [selected, setSelected] = useState([]);
-  const { isAuthenticated } = useAuth();
+  const translation = 'history';
+  const tableName = 'Logs';
+  const columns = ['createdAt', 'level', 'message', 'jsonData'];
+  const defaultPageSize = 20;
+
+  const { data, loading, fetchMore } = useQuery(LOGS_PAGINATED, {
+    variables: {
+      first: defaultPageSize,
+      // skip: 0,
+      // orderBy: 'createdAt_DESC',
+    },
+    fetchPolicy: 'cache-and-network',
+  });
 
   const getRow = ({ id, createdAt, message, level, jsonData } /* , checkBox */) => (
     <tr key={id}>
@@ -42,24 +53,23 @@ const History = () => {
     </tr>
   );
 
-  console.log('isAuthenticated', isAuthenticated);
-
   return (
-    <Layout loading={!isAuthenticated}>
+    <Layout>
       <div className="d-flex align-items-center">
         <h1 className="mr-2">{t('history.title')}</h1>
         {loading && <SpinnerIcon size={32} />}
       </div>
 
       <Table
-        query={LOGS_PAGINATED}
-        tableName="Logs"
-        translation={'history'}
-        columns={['createdAt', 'level', 'message', 'jsonData']}
+        data={data}
+        fetchMore={fetchMore}
+        defaultPageSize={defaultPageSize}
+        tableName={tableName}
+        translation={translation}
+        columns={columns}
         // selected={selected}
         // setSelected={setSelected}
         getRow={getRow}
-        // onLoading={setLoading}
       />
     </Layout>
   );
