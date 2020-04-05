@@ -4,35 +4,27 @@ import { Formik, Form as FormikForm } from 'formik';
 import * as Yup from 'yup';
 import { Layout } from '../components/Layout';
 import { ErrorText } from '../components/ErrorText';
-import { UPDATE_USER, USER } from '../graphql/users';
+import { UPDATE_USER, GET_USER } from '../graphql/users';
 import { useTranslation } from '../lib/useTranslation';
-import { Text, SubmitButton, Checkbox, Select } from '../components/Fields';
-import { useAuth } from '../lib/useAuth';
+import { Text, SubmitButton, Select } from '../components/Fields';
+import { picProps } from '../lib/utils';
 
 const Me = () => {
   const [t] = useTranslation();
   const trans = 'me.form';
-
-  // Load initial data
-  const { data, error: queryError, loading: queryLoading } = useQuery(USER, {
-    variables: { name: 'state' },
-    fetchPolicy: 'no-cache',
-  });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id, name, __typename, ...user } = data?.authenticatedUser || {};
-
-  // Update
+  const { data, error: queryError } = useQuery(GET_USER);
+  const { id, ...user } = data?.authenticatedUser || {};
+  const isAuthenticated = !!id;
   const [updateUser, { loading, error }] = useMutation(UPDATE_USER);
-  const { user: authUser, setUser } = useAuth();
 
   return (
-    <Layout loading={queryLoading}>
+    <Layout loading={!isAuthenticated}>
       <h1>{t('me.title')}</h1>
       <ErrorText error={!!queryError} type="loadError" />
 
-      {!queryLoading && (
+      {isAuthenticated && (
         <Formik
-          initialValues={user}
+          initialValues={picProps(user, ['email', 'firstName', 'lastName', 'mobile', 'langCode'])}
           enableReinitialize={true}
           validationSchema={Yup.object({
             firstName: Yup.string()
@@ -44,10 +36,6 @@ const Me = () => {
           })}
           onSubmit={async (values /* , formikBag */) => {
             console.log('values', values);
-            // Update auth user
-            const { langCode, firstName, lastName, email } = values;
-            setUser({ ...authUser, langCode, email, name: `${firstName} ${lastName}` });
-            // Update database
             updateUser({
               variables: { id, data: values },
             });
@@ -60,10 +48,6 @@ const Me = () => {
             </Form.Row>
             <Text name="email" type="email" trans={trans} />
             <Text name="mobile" type="text" trans={trans} />
-            <Form.Group>
-              <Checkbox name="emailNotifications" trans={trans} />
-              <Checkbox name="smsNotifications" trans={trans} />
-            </Form.Group>
             <Select name="langCode" trans={trans} options={['sv', 'en']} />
             <ErrorText error={!!error} type="updateError" right />
             <SubmitButton size="lg" disabled={!!queryError} isLoading={loading} trans={trans} />

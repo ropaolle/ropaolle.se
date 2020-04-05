@@ -24,8 +24,6 @@ module.exports = {
     isEmailValidated: { type: Checkbox, defaultValue: false },
     password: { type: Password },
     mobile: { type: Text },
-    smsNotifications: { type: Checkbox, defaultValue: false },
-    emailNotifications: { type: Checkbox, defaultValue: false },
     langCode: { type: Select, options: langCodes, defaultValue: 'sv' },
     lastAccess: { type: DateTime },
   },

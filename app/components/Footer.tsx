@@ -5,12 +5,12 @@ export const Footer = () => {
 
   return (
     <div className="d-block text-center">
-      <div>
+      <small>
         {t('footer.firstRow', null, {
           year: new Date().getFullYear(),
           ropaolle: t('footer.ropaolle'),
         })}
-      </div>
+      </small>
     </div>
   );
 };

@@ -1,15 +1,10 @@
-// import Link from 'next/link';
 import { Layout } from '../components/Layout';
-// import { StatusIcon } from '../components/StatusIcon';
-import { useTranslation } from '../lib/useTranslation';
-// import { useWebsocket } from '../lib/useWebsocket';
-import { useAuth } from '../lib/useAuth';
+import { useQuery } from 'react-apollo';
+import { GET_USER, User } from '../graphql/users';
 
 const Home = () => {
-  const { user } = useAuth();
-  // const [{ state3cx }] = useWebsocket();
-  const isAuthenticated = !!user;
-  const [t] = useTranslation();
+  const { data } = useQuery<{ authenticatedUser?: User }>(GET_USER);
+  const isAuthenticated = !!data?.authenticatedUser;
 
   return (
     <Layout mainClass="main">

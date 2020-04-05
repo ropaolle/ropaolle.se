@@ -1,6 +1,7 @@
 import { createContext, useReducer, useContext, useEffect } from 'react';
+import { useQuery } from 'react-apollo';
 import NextLink from 'next/link';
-import { useAuth } from '../lib/useAuth';
+import { GET_USER } from '../graphql/users';
 
 import SV from '../locales/sv';
 import EN from '../locales/en';
@@ -17,7 +18,7 @@ const initialState = {
 
 const SET_LANGUAGE = 'SET_LANGUAGE';
 
-export const setLanguage = payload => ({ type: SET_LANGUAGE, payload });
+export const setLanguage = (payload) => ({ type: SET_LANGUAGE, payload });
 
 const TranslationContext = createContext();
 
@@ -45,8 +46,8 @@ export const TranslationProvider = ({ children }) => {
 };
 
 export const SetLanguage = ({ dispatch }) => {
-  const { user } = useAuth();
-  const { langCode } = user || { langCode: 'sv' };
+  const { data } = useQuery(GET_USER);
+  const { langCode } = (data && data.authenticatedUser) || { langCode: 'sv' };
 
   useEffect(() => {
     if (langCode) {

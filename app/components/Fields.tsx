@@ -9,6 +9,7 @@ interface TextProps extends FormControlProps {
   trans: string;
   info?: string | ReactNode;
   row?: boolean;
+  hideLabel?: boolean;
 }
 
 interface CheckboxProps extends FormCheckProps {
@@ -53,7 +54,7 @@ interface BtnProps extends ButtonProps {
   size?: 'lg' | 'sm' | undefined;
 } */
 
-export const Text = ({ trans, info = '', row = false, ...props }: TextProps) => {
+export const Text = ({ trans, info = '', row = false, hideLabel = false, ...props }: TextProps) => {
   const [t] = useTranslation();
   delete props.size;
   const [field, meta] = useField(props.name);
@@ -61,9 +62,11 @@ export const Text = ({ trans, info = '', row = false, ...props }: TextProps) => 
   const placeholder = t(`${trans}.${props.name}.placeholder`, '');
   const infoText = info || t(`${trans}.${props.name}.info`, '');
 
+  // console.log('field', field, props);
+
   return (
     <Form.Group {...as}>
-      <Form.Label>{t(`${trans}.${props.name}.title`)}</Form.Label>
+      {!hideLabel && <Form.Label>{t(`${trans}.${props.name}.title`)}</Form.Label>}
       <Form.Control {...field} {...props} placeholder={placeholder} />
       {infoText && <Form.Text>{infoText}</Form.Text>}
       {meta.touched && meta.error && <Form.Text className="text-warning">{meta.error}</Form.Text>}
@@ -84,6 +87,7 @@ export const Checkbox = ({ trans, info, ...props }: CheckboxProps) => {
         className="mt-2"
         {...field}
         {...props}
+        checked={field.value}
         label={t(`${trans}.${props.name}.title`)}
       />
       {infoText && <Form.Text>{infoText}</Form.Text>}

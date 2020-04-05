@@ -2,7 +2,8 @@
 
 ## TODO
 
-- [ ] Remeber me, sessin age = 0.
+https://github.com/FrontendMasters/fullstack-graphql/blob/solution/client/src/pages/Pets.js
+
 - [ ] Use Apollo for local state.
 - [ ] Use Apollo cache.
 - [ ] Use Apollo [Optimistic UI](https://www.apollographql.com/docs/react/performance/optimistic-ui/)

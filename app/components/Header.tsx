@@ -41,7 +41,7 @@ export const Header = ({ user }: { user: any }) => {
           )}
         </Nav>
 
-        <ChangeLanguage />
+        {!isAuthenticated && <ChangeLanguage />}
 
         <Nav>
           {isAuthenticated ? (

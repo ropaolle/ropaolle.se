@@ -2,10 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import { ToastProvider } from 'react-toast-notifications';
 import { withApollo } from '../lib/apollo';
-// import { AuthProvider } from '../lib/authentication';
-// import { GlobalStateProvider } from '../lib/useGlobalState';
 import { TranslationProvider } from '../lib/useTranslation';
-// import { WebsocketProvider } from '../lib/useWebsocket';
 import { AuthProvider } from '../lib/useAuth';
 
 import '../css/bootstrap.min.css';
@@ -20,13 +17,9 @@ const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
   return (
     <ToastProvider autoDismiss>
       <AuthProvider>
-        {/* <GlobalStateProvider> */}
         <TranslationProvider>
-          {/* <WebsocketProvider> */}
           <Component {...pageProps} />
-          {/* </WebsocketProvider> */}
         </TranslationProvider>
-        {/* </GlobalStateProvider> */}
       </AuthProvider>
     </ToastProvider>
   );

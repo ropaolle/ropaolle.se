@@ -2,7 +2,7 @@ import React, { useEffect, createContext, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useApolloClient, useMutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import { UPDATE_USER } from '../graphql/users';
+import { GET_USER, UPDATE_USER } from '../graphql/users';
 import { CREATE_LOG } from '../graphql/logs';
 
 const AuthContext = createContext();
@@ -12,8 +12,11 @@ export const useAuth = () => useContext(AuthContext);
 const userFragment = `
   id
   email
+  firstName
+  lastName
   name
-  isBlocked
+  isAdmin
+  mobile
   langCode
 `;
 
@@ -23,7 +26,7 @@ export const AuthProvider = ({ children, initialUser = null }) => {
   const [error, setError] = useState(null);
   const [user, setUser] = useState(initialUser);
 
-  // INFO: Updates lastAccess each time a user access a new route. I.e. not if a page is
+  // TODO: Updates lastAccess each time a user access a new route. I.e. not if a page is
   // reloaded or the user stays on the same path. Not so pretty. Should be moved and refactored.
   const { pathname } = useRouter();
   const [updateUser] = useMutation(UPDATE_USER);
@@ -50,17 +53,17 @@ export const AuthProvider = ({ children, initialUser = null }) => {
   const checkSession = async () =>
     client
       .query({
-        query: gql`
-          query {
-            authenticatedUser {
-              ${userFragment}
-            }
-          }
-        `,
+        query: GET_USER,
         fetchPolicy: 'no-cache',
       })
       .then(({ data: { authenticatedUser }, error }) => {
         if (error) throw error;
+        // TODO: Update cache
+        client.cache.writeQuery({
+          query: GET_USER,
+          data: { authenticatedUser },
+        });
+
         setUser(authenticatedUser);
       })
       .catch((error) => {
@@ -212,10 +215,8 @@ export const AuthProvider = ({ children, initialUser = null }) => {
     <AuthContext.Provider
       value={{
         isAuthenticated: !!user,
-        user,
         isLoading,
         error,
-        setUser,
         checkSession,
         signin,
         signout,

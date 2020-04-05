@@ -4,8 +4,8 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { Meta } from './Meta';
 import { SpinnerIcon } from '../components/FontAwsomeIcons';
-import { useTranslation } from '../lib/useTranslation';
-import { useAuth } from '../lib/useAuth';
+import { useQuery } from 'react-apollo';
+import { GET_USER, User } from '../graphql/users';
 
 interface Props {
   children?: ReactNode;
@@ -15,8 +15,8 @@ interface Props {
 }
 
 export const Layout = ({ children, title, mainClass, loading }: Props) => {
-  const { user } = useAuth();
-  const [t] = useTranslation();
+  const { data } = useQuery<{ authenticatedUser?: User }>(GET_USER);
+  const user = data?.authenticatedUser;
 
   return (
     <>

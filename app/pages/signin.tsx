@@ -7,7 +7,7 @@ import { LayoutSignin } from '../components/LayoutSignin';
 import { RopaOlleIcon } from '../components/FontAwsomeIcons';
 import { useAuth } from '../lib/useAuth';
 import { useTranslation } from '../lib/useTranslation';
-import { Text, Checkbox, SubmitButton } from '../components/Fields';
+import { Text, SubmitButton } from '../components/Fields';
 import { Form } from 'react-bootstrap';
 
 const Signin: NextPage = () => {
@@ -58,13 +58,10 @@ const Signin: NextPage = () => {
             }}
           >
             <FormikForm>
-              <Text name="email" type="email" trans={trans} />
-              <Text name="password" type="password" trans={trans} />
+              <Text name="email" type="email" trans={trans} hideLabel />
+              <Text name="password" type="password" trans={trans} hideLabel />
               <Form.Text className="text-right text-danger">{displayError}</Form.Text>
-              <div className="d-flex justify-content-between align-items-end mt-2">
-                <Checkbox name="rememberMe" trans={trans} />
-                <SubmitButton variant="dark" isLoading={isLoading} trans={trans} />
-              </div>
+              <SubmitButton variant="dark" isLoading={isLoading} trans={trans} />
             </FormikForm>
           </Formik>
         </div>
