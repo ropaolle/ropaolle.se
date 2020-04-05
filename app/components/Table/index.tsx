@@ -39,13 +39,14 @@ export const Table: React.SFC<TableProps> = ({
 
   // Load data
   const sortString = `${sort.field}_${sort.ascending ? 'ASC' : 'DESC'}`;
-  const { data, loading /* , error */ } = useQuery(query(pageSize, activePage, sortString), {
-    fetchPolicy: 'no-cache',
+  // TODO: Apollo loadMore
+  const { data, loading, error } = useQuery(query(pageSize, activePage, sortString), {
+    fetchPolicy: 'cache-and-network',
   });
 
   // https://reactjs.org/blog/2020/02/26/react-v16.13.0.html#warnings-for-some-updates-during-render
   useEffect(() => {
-    onLoading(loading);
+    // onLoading(loading);
   }, [loading]);
 
   const rowTable = `all${tableName}`;

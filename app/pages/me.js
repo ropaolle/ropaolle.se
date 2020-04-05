@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { Layout } from '../components/Layout';
 import { ErrorText } from '../components/ErrorText';
 import { UPDATE_USER, GET_USER } from '../graphql/users';
+import { CREATE_LOG } from '../graphql/logs';
 import { useTranslation } from '../lib/useTranslation';
 import { Text, SubmitButton, Select } from '../components/Fields';
 import { picProps } from '../lib/utils';
@@ -16,6 +17,7 @@ const Me = () => {
   const { id, ...user } = data?.authenticatedUser || {};
   const isAuthenticated = !!id;
   const [updateUser, { loading, error }] = useMutation(UPDATE_USER);
+  const [createLog] = useMutation(CREATE_LOG);
 
   return (
     <Layout loading={!isAuthenticated}>
@@ -39,6 +41,8 @@ const Me = () => {
             updateUser({
               variables: { id, data: values },
             });
+
+            createLog({ variables: { data: { message: `${values.updated} updated.` } } });
           }}
         >
           <FormikForm className="me-form">

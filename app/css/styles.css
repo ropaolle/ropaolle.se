@@ -12,6 +12,11 @@ a:hover {
   opacity: 0.6;
 }
 
+.navbar .navbar-brand:hover {
+  opacity: 0.9;
+  color: #28a745;
+}
+
  h2 {
   margin-top: 2rem;
 } 

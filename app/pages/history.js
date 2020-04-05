@@ -6,6 +6,7 @@ import { SpinnerIcon } from '../components/FontAwsomeIcons';
 import { useTranslation } from '../lib/useTranslation';
 import { LOGS_PAGINATED } from '../graphql/logs';
 import { Table } from '../components/Table';
+import { useAuth } from '../lib/useAuth';
 
 const CustomToggle = ({ children, eventKey }) => {
   const decoratedOnClick = useAccordionToggle(eventKey, () => {});
@@ -20,6 +21,7 @@ const History = () => {
   const [t] = useTranslation();
   const [loading, setLoading] = useState(false);
   // const [selected, setSelected] = useState([]);
+  const { isAuthenticated } = useAuth();
 
   const getRow = ({ id, createdAt, message, level, jsonData } /* , checkBox */) => (
     <tr key={id}>
@@ -40,8 +42,10 @@ const History = () => {
     </tr>
   );
 
+  console.log('isAuthenticated', isAuthenticated);
+
   return (
-    <Layout>
+    <Layout loading={!isAuthenticated}>
       <div className="d-flex align-items-center">
         <h1 className="mr-2">{t('history.title')}</h1>
         {loading && <SpinnerIcon size={32} />}
@@ -55,7 +59,7 @@ const History = () => {
         // selected={selected}
         // setSelected={setSelected}
         getRow={getRow}
-        onLoading={setLoading}
+        // onLoading={setLoading}
       />
     </Layout>
   );

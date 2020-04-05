@@ -4,9 +4,10 @@
 
 https://github.com/FrontendMasters/fullstack-graphql/blob/solution/client/src/pages/Pets.js
 
+- [ ] Pager med Apollo fetchMore
 - [ ] Use Apollo for local state.
-- [ ] Use Apollo cache.
 - [ ] Use Apollo [Optimistic UI](https://www.apollographql.com/docs/react/performance/optimistic-ui/)
+- [x] Use Apollo cache.
 
 ## Nice to have
 

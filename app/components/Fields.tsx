@@ -18,14 +18,6 @@ interface CheckboxProps extends FormCheckProps {
   info?: string | ReactNode;
 }
 
-// interface SelectProps extends FormCheckProps {
-//   name: string;
-//   trans: string;
-//   info?: string | ReactNode;
-//   children?: ReactNode;
-//   options?: [string];
-// }
-
 interface SelectProps {
   name: string;
   trans: string;
@@ -41,19 +33,6 @@ interface BtnProps extends ButtonProps {
   spinner?: Boolean;
 }
 
-/* interface FieldProps {
-  name: string;
-  trans: string;
-  info?: string | ReactNode;
-  row?: boolean;
-  children?: ReactNode;
-  options?: [string];
-  isLoading?: boolean;
-  spinner?: Boolean;
-  type?: string;
-  size?: 'lg' | 'sm' | undefined;
-} */
-
 export const Text = ({ trans, info = '', row = false, hideLabel = false, ...props }: TextProps) => {
   const [t] = useTranslation();
   delete props.size;
@@ -61,8 +40,6 @@ export const Text = ({ trans, info = '', row = false, hideLabel = false, ...prop
   const as = row ? { as: Col } : null;
   const placeholder = t(`${trans}.${props.name}.placeholder`, '');
   const infoText = info || t(`${trans}.${props.name}.info`, '');
-
-  // console.log('field', field, props);
 
   return (
     <Form.Group {...as}>
