@@ -1,14 +1,5 @@
 import gql from 'graphql-tag';
 
-// export const CREATE_USER = gql`
-//   mutation CreateUser($data: UserCreateInput!) {
-//     createUser(data: $data) {
-//       id
-//       email
-//     }
-//   }
-// `;
-
 export interface User {
   id: string;
   name: string;
@@ -25,7 +16,16 @@ const USER_FRAGMENT = `
   isAdmin
   mobile
   langCode
+  lastAccess
 `;
+
+// export const CREATE_USER = gql`
+//   mutation CreateUser($data: UserCreateInput!) {
+//     createUser(data: $data) {
+//       id
+//     }
+//   }
+// `;
 
 export const UPDATE_USER = gql`
   mutation UpdateUser($id: ID!, $data: UserUpdateInput!) {
@@ -44,35 +44,10 @@ export const GET_USER = gql`
   }
 `;
 
-export const USER2 = gql`
-  query getUser($userId: ID!) {
-    User(where: { id: $userId }) {
+export const USERS_PAGINATED = gql`
+  query UsersPaginated($first: Int, $skip: Int, $orderBy: String) {
+    allUsers(first: $first, skip: $skip, orderBy: $orderBy) {
       ${USER_FRAGMENT}
-    }
-  }
-`;
-
-export const USERS = gql`
-  query {
-    allUsers {
-      id
-      name
-      email
-      mobile
-      smsNotifications
-      emailNotifications
-    }
-  }
-`;
-
-export const USERS_PAGINATED = (pageSize = 20, page = 1, orderBy = 'id_DESC') => gql`
-  query {
-    allUsers(first: ${pageSize}, skip: ${(page - 1) * pageSize}, orderBy: "${orderBy}") {
-      id
-      email
-      name
-      firstName
-      lastAccess
     }
     _allUsersMeta {
       count

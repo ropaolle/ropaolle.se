@@ -25,5 +25,7 @@ const MyApp: NextPage<Props> = ({ Component, pageProps }) => {
   );
 };
 
-// ssr: true -> https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
-export default withApollo({ ssr: true })(MyApp);
+// INFO: Is ssr: true needed?
+// - https://github.com/zeit/next.js/blob/master/errors/opt-out-auto-static-optimization.md
+// - message: 'You do not have access to this resource'
+export default withApollo({ ssr: false })(MyApp);

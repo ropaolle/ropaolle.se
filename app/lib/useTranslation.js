@@ -37,6 +37,7 @@ const translationReducer = (state, action) => {
 
 export const TranslationProvider = ({ children }) => {
   const [state, dispatch] = useReducer(translationReducer, initialState);
+
   return (
     <TranslationContext.Provider value={[state, dispatch]}>
       <SetLanguage dispatch={dispatch} />

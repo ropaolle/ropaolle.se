@@ -8,35 +8,15 @@ export const CREATE_LOG = gql`
   }
 `;
 
-export const LOGS = gql`
-  query {
-    allLogs(first: 100, orderBy: "id_DESC") {
+export const LOGS_PAGINATED = gql`
+  query LogsPaginated($first: Int, $skip: Int, $orderBy: String) {
+    allLogs(first: $first, skip: $skip, orderBy: $orderBy) {
       id
       createdAt
       message
       level
       jsonData
     }
-  }
-`;
-
-export const LOGS_PAGINATED = (pageSize, page, orderBy = 'id_DESC') => gql`
-  query {
-    allLogs(first: ${pageSize}, skip: ${(page - 1) * pageSize}, orderBy: "${orderBy}") {
-      id
-      createdAt
-      message
-      level
-      jsonData
-    }
-    _allLogsMeta {
-      count
-    }
-  }
-`;
-
-export const COUNT = gql`
-  query {
     _allLogsMeta {
       count
     }
