@@ -25,7 +25,7 @@ module.exports = {
     password: { type: Password },
     mobile: { type: Text },
     langCode: { type: Select, options: langCodes, defaultValue: 'sv' },
-    lastAccess: { type: DateTime },
+    lastAccess: { type: DateTime, format: 'YYYY-MM-DD HH:mm:ss' },
   },
   // plugins: [atTracking()],
   access: {

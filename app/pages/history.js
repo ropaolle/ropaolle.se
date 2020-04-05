@@ -2,7 +2,7 @@ import React /* , { useState } */ from 'react';
 import { Accordion, useAccordionToggle } from 'react-bootstrap';
 import { useQuery } from 'react-apollo';
 import { Layout } from '../components/Layout';
-import { localeDate, formatJSON } from '../lib/utils';
+import { formatDate, formatJSON } from '../lib/utils';
 import { SpinnerIcon } from '../components/FontAwsomeIcons';
 import { useTranslation } from '../lib/useTranslation';
 import { LOGS_PAGINATED } from '../graphql/logs';
@@ -37,7 +37,7 @@ const History = () => {
   const getRow = ({ id, createdAt, message, level, jsonData } /* , checkBox */) => (
     <tr key={id}>
       {/* <td>{checkBox}</td> */}
-      <td className="text-nowrap">{localeDate(createdAt)}</td>
+      <td className="text-nowrap">{formatDate(createdAt)}</td>
       <td>{level}</td>
       <td className="w-50">{message}</td>
       <td>

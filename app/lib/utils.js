@@ -1,17 +1,17 @@
-// const now = () => format(Date.now(), 'yyyy-MM-dd HH:mm');
-// const now = () => new Date().toISOString();
+import { utcToZonedTime, format } from 'date-fns-tz';
 
-export const formatDate = (date, seconds = false) =>
-  date ? date.slice(0, seconds ? 19 : 16).replace('T', ' ') : '';
+export const formatDate = (
+  utcDate,
+  pattern = 'yyyy-MM-dd HH:mm:ss',
+  timeZone = 'Europe/Stockholm'
+) => {
+  if (!utcDate) {
+    return '';
+  }
 
-const { formatToTimeZone } = require('date-fns-timezone');
-
-export const localeDate = (utcDate, seconds = false) =>
-  utcDate
-    ? formatToTimeZone(utcDate, `YYYY-MM-DD HH:mm${seconds ? ':ss' : ''}`, {
-        timeZone: 'Europe/Stockholm',
-      })
-    : '';
+  const zonedDate = utcToZonedTime(utcDate, timeZone);
+  return format(zonedDate, pattern, { timeZone });
+};
 
 export const picProps = (object, propList = []) =>
   propList.reduce((acc, prop) => {

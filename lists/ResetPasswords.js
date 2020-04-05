@@ -6,7 +6,7 @@ module.exports = {
   fields: {
     token: { type: Text, isRequiered: true },
   },
-  plugins: [createdAt()],
+  plugins: [createdAt({ format: 'YYYY-MM-DD HH:mm:ss' })],
   access: {
     read: userIsAdmin,
     update: userIsAdmin,

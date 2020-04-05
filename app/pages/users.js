@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { Layout } from '../components/Layout';
-import { localeDate } from '../lib/utils';
+import { formatDate } from '../lib/utils';
 import { SpinnerIcon } from '../components/FontAwsomeIcons';
 import { useTranslation } from '../lib/useTranslation';
 import { USERS_PAGINATED } from '../graphql/users';
@@ -29,7 +29,7 @@ const Users = () => {
       <td>{checkBox}</td>
       <td className="text-nowrap">{name}</td>
       <td className="w-50z">{isAdmin ? 'Ja' : 'Nej'}</td>
-      <td>{localeDate(lastAccess, true)}</td>
+      <td>{formatDate(lastAccess)}</td>
     </tr>
   );
 

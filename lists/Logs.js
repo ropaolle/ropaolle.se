@@ -15,7 +15,7 @@ module.exports = {
     level: { type: Select, options: levels, defaultValue: 'info' },
     jsonData: { type: Text },
   },
-  plugins: [createdAt()],
+  plugins: [createdAt({ format: 'YYYY-MM-DD HH:mm:ss' })],
   access: {
     read: isAuthenticated,
   },
