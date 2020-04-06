@@ -1,5 +1,5 @@
 const translate = {
-  title: '3CX-proben',
+  title: 'RopaOlle.se',
   langCode: {
     sv: 'SV',
     en: 'EN',
@@ -8,18 +8,11 @@ const translate = {
     sv: 'Svenska',
     en: 'Engelska',
   },
-  tabTitle: {
-    regError: '3CX-proben (Error)',
-    probError: '3CX-proben (Prob error)',
-    regSuccess: '3CX-proben (Ok)',
-    unknown: '3CX-proben (Unknown)',
-  },
   header: {
     home: 'Hem',
     history: 'Historik',
     me: 'Konto',
     users: 'Användare',
-    settings: 'Inställningar',
     admin: 'Administration',
     signIn: 'Logga in',
     signOut: 'Logga ut',
@@ -31,22 +24,22 @@ const translate = {
       text: 'RopaOlle.se',
     },
   },
-  statusIcons: {
-    unknown: { title: 'Unknown', color: '#ffc107', icon: 'QuestionCircleIcon', text: 'Unknown' },
-    regSuccess: { title: 'OK', color: '#28a745', icon: 'CheckCircleIcon', text: 'Registrering OK' },
-    regError: {
-      title: 'Error',
-      color: '#dc3545',
-      icon: 'ExclamationTriangleIcon',
-      text: 'Registreringsfel!',
-    },
-    probError: {
-      title: 'Prob error',
-      color: '#ffc107',
-      icon: 'ExclamationTriangleIcon',
-      text: 'Probfel!',
-    },
-  },
+  // statusIcons: {
+  //   unknown: { title: 'Unknown', color: '#ffc107', icon: 'QuestionCircleIcon', text: 'Unknown' },
+  //   regSuccess: { title: 'OK', color: '#28a745', icon: 'CheckCircleIcon', text: 'Registrering OK' },
+  //   regError: {
+  //     title: 'Error',
+  //     color: '#dc3545',
+  //     icon: 'ExclamationTriangleIcon',
+  //     text: 'Registreringsfel!',
+  //   },
+  //   probError: {
+  //     title: 'Prob error',
+  //     color: '#ffc107',
+  //     icon: 'ExclamationTriangleIcon',
+  //     text: 'Probfel!',
+  //   },
+  // },
   history: {
     more: 'mer...',
     title: 'Historik',
@@ -83,14 +76,6 @@ const translate = {
         title: 'Mobilnummer',
         placeholder: 'mobilnummer: +467012345678',
       },
-      emailNotifications: {
-        title: 'Epost-notifieringar',
-        info: 'Skicka larm och notifieringar till min Epost.',
-      },
-      smsNotifications: {
-        title: 'SMS-notifieringar',
-        info: 'Skicka larm och notifieringar till mitt mobilnummer.',
-      },
       langCode: {
         title: 'Språk',
         sv: 'Svenska',
@@ -101,29 +86,6 @@ const translate = {
         loading: 'Sparar...',
       },
     },
-  },
-  settings: {
-    title: 'Inställningar',
-    form: {
-      testMode: {
-        title: 'Epost- och SMS-notifieringar',
-        disable: 'Av - Inga notifieringar.',
-        test: 'Test - Endast till nedanstående testadresser.',
-        normal: 'Normal - Skicka notifieringar.',
-      },
-      testEmail: {
-        title: 'Epost',
-      },
-      testSms: {
-        title: 'Mobilnummer',
-        placeholder: '+4670xxxxxxxx',
-      },
-      notificationThreshold: {
-        title: 'Notifieringströskel',
-        info: 'Antal felaktiga registreringar innan en notifiering skickas.',
-      },
-    },
-    error: 'Inställningarna kunde inte sparas!',
   },
   signin: {
     title: 'Logga in',
@@ -241,8 +203,6 @@ const translate = {
       missingToken: 'Token saknas',
       invalidToken: 'Felaktigt token',
       databaseError: 'Databasfel',
-      loadError: 'Inställningarna kunde inte laddas!',
-      updateError: 'Inställningarna kunde inte sparas!',
     },
   },
   pager: {

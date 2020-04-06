@@ -3,12 +3,8 @@ import Head from 'next/head';
 export const Meta = ({ description, title }: { description?: string; title?: string }) => {
   return (
     <Head>
-      <title>{title || '3CX-proben'}</title>
-      <meta
-        key="0"
-        name="description"
-        content={description || '3CX-proben is a real-time testing tool.'}
-      />
+      <title>{title || 'RopaOlle.se'}</title>
+      <meta key="0" name="description" content={description || 'RopaOlle.se dungeon.'} />
       <meta key="1" name="msapplication-TileColor" content="#b91d47" />
       <meta key="2" name="theme-color" content="#da532c" />
       <meta key="3" name="apple-mobile-web-app-title" content="RopaOlle.se" />

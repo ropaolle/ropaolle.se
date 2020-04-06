@@ -2,7 +2,7 @@
 
 ## TODO
 
-- [ ] ?
+- [ ] Add basic settings page.
 
 ## Nice to have
 

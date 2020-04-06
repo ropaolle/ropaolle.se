@@ -1,5 +1,5 @@
 const translate = {
-  title: '3CX-proben',
+  title: 'RopaOlle.se',
   langCode: {
     sv: 'SV',
     en: 'EN',
@@ -8,18 +8,11 @@ const translate = {
     sv: 'Swedish',
     en: 'English',
   },
-  tabTitle: {
-    regError: '3CX-proben (Error)',
-    probError: '3CX-proben (Prob error)',
-    regSuccess: '3CX-proben (Ok)',
-    unknown: '3CX-proben (Unknown)',
-  },
   header: {
     home: 'Home',
     history: 'History',
     me: 'Account',
     users: 'Users',
-    settings: 'Settings',
     admin: 'Administration',
     signIn: 'Sign in',
     signOut: 'Sign out',
@@ -31,22 +24,22 @@ const translate = {
       text: 'RopaOlle.se',
     },
   },
-  statusIcons: {
-    unknown: { title: 'Unknown', color: '#ffc107', icon: 'QuestionCircleIcon', text: 'Unknown' },
-    regSuccess: { title: 'OK', color: '#28a745', icon: 'CheckCircleIcon', text: 'Registration OK' },
-    regError: {
-      title: 'Error',
-      color: '#dc3545',
-      icon: 'ExclamationTriangleIcon',
-      text: 'Registration error!',
-    },
-    probError: {
-      title: 'Prob error',
-      color: '#ffc107',
-      icon: 'ExclamationTriangleIcon',
-      text: 'Prob error!',
-    },
-  },
+  // statusIcons: {
+  //   unknown: { title: 'Unknown', color: '#ffc107', icon: 'QuestionCircleIcon', text: 'Unknown' },
+  //   regSuccess: { title: 'OK', color: '#28a745', icon: 'CheckCircleIcon', text: 'Registration OK' },
+  //   regError: {
+  //     title: 'Error',
+  //     color: '#dc3545',
+  //     icon: 'ExclamationTriangleIcon',
+  //     text: 'Registration error!',
+  //   },
+  //   probError: {
+  //     title: 'Prob error',
+  //     color: '#ffc107',
+  //     icon: 'ExclamationTriangleIcon',
+  //     text: 'Prob error!',
+  //   },
+  // },
   history: {
     more: 'more...',
     title: 'History',
@@ -56,6 +49,7 @@ const translate = {
       message: 'Message',
       jsonData: 'Data',
     },
+    tableEmpty: 'No content...',
   },
   home: {
     regSuccess: 'Registrations',
@@ -82,14 +76,6 @@ const translate = {
         title: 'Cell number',
         placeholder: '+467012345678',
       },
-      emailNotifications: {
-        title: 'Email notification',
-        info: 'Send alarms and notifications to my Email.',
-      },
-      smsNotifications: {
-        title: 'SMS notifications',
-        info: 'Send alarms and notifications to my cell phone.',
-      },
       langCode: {
         title: 'Language',
         sv: 'Swedish',
@@ -100,29 +86,6 @@ const translate = {
         loading: 'Saving...',
       },
     },
-  },
-  settings: {
-    title: 'Settings',
-    form: {
-      testMode: {
-        title: 'Email and SMS notifications',
-        disable: 'Off - Disable notifications.',
-        test: 'Test - Use only test destinations.',
-        normal: 'Normal - Send notifications.',
-      },
-      testEmail: {
-        title: 'Email',
-      },
-      testSms: {
-        title: 'Cell number',
-        placeholder: '+4670xxxxxxxx',
-      },
-      notificationThreshold: {
-        title: 'Notification threshold',
-        info: 'The number of failed registrations before notifications are sent.',
-      },
-    },
-    error: 'Settings could not be saved!',
   },
   signin: {
     title: 'Sign in',
@@ -231,6 +194,7 @@ const translate = {
       isAdmin: 'Administrator',
       lastAccess: 'Last access',
     },
+    tableEmpty: 'No content...',
   },
   error: {
     title: 'Error',
@@ -239,8 +203,6 @@ const translate = {
       missingToken: 'Token missing',
       invalidToken: 'Invalid token',
       databaseError: 'Database error',
-      loadError: 'Settings could not be loaded!',
-      updateError: 'Settings could not be saved!',
     },
   },
   pager: {
