@@ -7,6 +7,7 @@
 
 ## Nice to have
 
+- [ ] Debug Chrome/Next and Keystone
 - [ ] Schema directives, needs to be added to the type definition and is not supported by KeystoneJS, [Schema directives](https://www.apollographql.com/docs/graphql-tools/schema-directives/).
 
 ## Info

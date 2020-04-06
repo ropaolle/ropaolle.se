@@ -1,13 +1,7 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Form, Col, Row } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
-import Select from 'react-select';
 import { useTranslation } from '../../lib/useTranslation';
-
-interface Option {
-  value: number | string;
-  label: string;
-}
 
 const pageSizes = [
   { value: 10, label: '10' },
@@ -16,31 +10,31 @@ const pageSizes = [
   { value: 100, label: '100' },
 ];
 
+interface PagerParams {
+  pageSize?: number;
+  activePage: number;
+}
+
 interface PagerProps {
   totalItemsCount: number;
   pageRangeDisplayed: number;
   activePage: number;
-  setActivePage: (activePage: number) => void;
   pageSize: number;
-  setPageSize: (pageSize: number) => void;
+  handleChange: (params: PagerParams) => void;
 }
 
 export const Pager: React.SFC<PagerProps> = ({
   totalItemsCount,
   pageRangeDisplayed,
   activePage,
-  setActivePage,
   pageSize,
-  setPageSize,
+  handleChange,
 }) => {
   const [t] = useTranslation();
 
-  const handlePageSizeChange = ({ value }: any) => {
-    const lastPage = Math.ceil(totalItemsCount / value);
-    if (value > lastPage) {
-      setActivePage(lastPage);
-    }
-    setPageSize(value);
+  const handlePageSizeChange = (pageSize: number) => {
+    const lastPage = Math.ceil(totalItemsCount / pageSize);
+    handleChange({ pageSize, activePage: Math.min(activePage, lastPage) });
   };
 
   return (
@@ -54,22 +48,28 @@ export const Pager: React.SFC<PagerProps> = ({
           itemsCountPerPage={pageSize}
           totalItemsCount={totalItemsCount}
           pageRangeDisplayed={pageRangeDisplayed}
-          onChange={setActivePage}
+          onChange={(activePage) => handleChange({ activePage })}
           linkClass="page-link"
           itemClass="page-item"
           activeLinkClass="not-used"
         />
       </Col>
       <Col md={2}>
-        <div className="mb-2">{t('pager.rowsPerPage')}</div>
-        <Select
-          name="pageSize"
-          // instanceId - Warning: Prop `id` did not match: https://github.com/JedWatson/react-select/issues/2629
-          instanceId="pageSize"
-          value={pageSizes.filter((o: Option) => o.value === pageSize)}
-          onChange={handlePageSizeChange}
-          options={pageSizes}
-        />
+        <Form.Group>
+          {<Form.Label>{t('pager.rowsPerPage')}</Form.Label>}
+          <Form.Control
+            as="select"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handlePageSizeChange(Number(e.target.value))
+            }
+          >
+            {pageSizes.map(({ value, label }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
       </Col>
     </Row>
   );

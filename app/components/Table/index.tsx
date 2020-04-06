@@ -1,37 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { Table as BootstrapTable } from 'react-bootstrap';
+import { useQuery } from 'react-apollo';
+import { DocumentNode } from 'graphql';
 import { Pager } from './Pager';
-import { Header } from './Header';
+import { Header, Column } from './Header';
 import { CheckBox } from './CheckBox';
+import { useLocalStorage } from '../../lib/useLocalStorage';
+import { useTranslation } from '../../lib/useTranslation';
+
+interface ListParams {
+  pageSize?: number;
+  activePage?: number;
+  orderBy?: string;
+  ascending?: boolean;
+}
 
 interface TableProps {
-  data: any;
-  fetchMore: any;
-  defaultPageSize?: number;
+  query: DocumentNode;
+  defaultParams: ListParams;
   tableName: string;
-  translation: any;
-  columns: any;
+  translation: string;
+  columns: Column[];
   getRow: any;
+  TableRow: any;
   selected?: any;
   setSelected?: any;
 }
 
 export const Table: React.SFC<TableProps> = ({
-  data,
-  fetchMore,
-  defaultPageSize,
+  query,
+  defaultParams,
   tableName,
   translation,
   columns,
-  getRow,
+  TableRow,
   selected,
   setSelected,
 }) => {
-  const [activePage, setActivePage] = useState(1);
-  const [pageSize, setPageSize] = useState(defaultPageSize || 20);
+  const [t] = useTranslation();
   const [allSelected, setAllSelected] = useState(false);
-  const [sort, setSort] = useState({ ascending: false, field: columns[0] });
   const useCheckBoxes = typeof setSelected === 'function';
+  const [listParams, setListParams] = useLocalStorage(`${translation}-pageSize`, defaultParams);
+  const { pageSize, activePage, orderBy, ascending } = listParams;
+
+  const variables = {
+    first: pageSize,
+    skip: (activePage - 1) * pageSize,
+    orderBy: `${orderBy}_${ascending ? 'ASC' : 'DESC'}`,
+  };
+
+  const { data, loading, fetchMore } = useQuery(query, {
+    variables,
+    fetchPolicy: 'cache-and-network',
+  });
+
   const rowTable = `all${tableName}`;
   const countTable = `_all${tableName}Meta`;
   const rows = (data && data[rowTable]) || [];
@@ -39,11 +61,7 @@ export const Table: React.SFC<TableProps> = ({
 
   useEffect(() => {
     fetchMore({
-      variables: {
-        first: pageSize,
-        skip: (activePage - 1) * pageSize,
-        orderBy: `${sort.field}_${sort.ascending ? 'ASC' : 'DESC'}`,
-      },
+      variables,
       updateQuery: (prev: any, { fetchMoreResult }: any) => {
         if (!fetchMoreResult) return prev;
 
@@ -53,14 +71,10 @@ export const Table: React.SFC<TableProps> = ({
         });
       },
     });
-  }, [activePage, pageSize, sort]);
+  }, [activePage, pageSize, ascending, orderBy]);
 
-  const handleSortHeaderClick = (field: String) => {
-    if (sort.field === field) {
-      setSort({ ...sort, ascending: !sort.ascending });
-    } else {
-      setSort({ ...sort, field });
-    }
+  const handleChange = (update: ListParams) => {
+    setListParams({ ...listParams, ...update });
   };
 
   const handleSelect = (e: any) => {
@@ -85,23 +99,39 @@ export const Table: React.SFC<TableProps> = ({
 
   return (
     <>
-      <BootstrapTable striped bordered hover size="sm" variant="dark2">
+      <BootstrapTable striped bordered hover size="sm">
         <Header
           translation={translation}
           columns={columns}
-          sort={sort}
+          ascending={ascending}
+          orderBy={orderBy}
+          onSortHeaderClick={handleChange}
           allSelected={allSelected}
+          loading={loading}
           onSelectAll={useCheckBoxes ? handleSelectAll : undefined}
-          onSortHeaderClick={handleSortHeaderClick}
         />
         <tbody>
-          {rows.map((row: any) =>
-            getRow(
-              row,
-              useCheckBoxes && (
-                <CheckBox checked={selected.includes(row.id)} id={row.id} onChange={handleSelect} />
-              )
-            )
+          {count ? (
+            rows.map((row: any) => (
+              <React.Fragment key={row.id}>
+                <TableRow
+                  {...row}
+                  checkBox={
+                    useCheckBoxes && (
+                      <CheckBox
+                        checked={selected.includes(row.id)}
+                        id={row.id}
+                        onChange={handleSelect}
+                      />
+                    )
+                  }
+                />
+              </React.Fragment>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={columns.length}>{t(`${translation}.tableEmpty`)}</td>
+            </tr>
           )}
         </tbody>
       </BootstrapTable>
@@ -111,9 +141,8 @@ export const Table: React.SFC<TableProps> = ({
           totalItemsCount={count}
           pageRangeDisplayed={6}
           activePage={activePage}
-          setActivePage={setActivePage}
           pageSize={pageSize}
-          setPageSize={setPageSize}
+          handleChange={handleChange}
         />
       )}
     </>

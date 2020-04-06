@@ -1,9 +1,7 @@
-import React /* , { useState } */ from 'react';
+import React from 'react';
 import { Accordion, useAccordionToggle } from 'react-bootstrap';
-import { useQuery } from 'react-apollo';
 import { Layout } from '../components/Layout';
 import { formatDate, formatJSON } from '../lib/utils';
-import { SpinnerIcon } from '../components/FontAwsomeIcons';
 import { useTranslation } from '../lib/useTranslation';
 import { LOGS_PAGINATED } from '../graphql/logs';
 import { Table } from '../components/Table';
@@ -19,31 +17,20 @@ const CustomToggle = ({ children, eventKey }) => {
 
 const History = () => {
   const [t] = useTranslation();
-  // const [selected, setSelected] = useState([]);
   const translation = 'history';
   const tableName = 'Logs';
   const columns = ['createdAt', 'level', 'message', 'jsonData'];
-  const defaultPageSize = 20;
+  const defaultParams = { pageSize: 10, activePage: 1, orderBy: columns[0], ascending: true };
 
-  const { data, loading, fetchMore } = useQuery(LOGS_PAGINATED, {
-    variables: {
-      first: defaultPageSize,
-      // skip: 0,
-      // orderBy: 'createdAt_DESC',
-    },
-    fetchPolicy: 'cache-and-network',
-  });
-
-  const getRow = ({ id, createdAt, message, level, jsonData } /* , checkBox */) => (
-    <tr key={id}>
-      {/* <td>{checkBox}</td> */}
+  const TableRow = ({ id, createdAt, message, level, jsonData }) => (
+    <tr>
       <td className="text-nowrap">{formatDate(createdAt)}</td>
       <td>{level}</td>
       <td className="w-50">{message}</td>
       <td>
         {jsonData && (
           <Accordion>
-            <CustomToggle eventKey={id}>{t('history.more')}</CustomToggle>
+            <CustomToggle eventKey={id}>{t(`${translation}.more`)}</CustomToggle>
             <Accordion.Collapse eventKey={id}>
               <pre>{formatJSON(jsonData)}</pre>
             </Accordion.Collapse>
@@ -55,21 +42,15 @@ const History = () => {
 
   return (
     <Layout>
-      <div className="d-flex align-items-center">
-        <h1 className="mr-2">{t('history.title')}</h1>
-        {loading && <SpinnerIcon size={32} />}
-      </div>
+      <h1>{t('history.title')}</h1>
 
       <Table
-        data={data}
-        fetchMore={fetchMore}
-        defaultPageSize={defaultPageSize}
+        defaultParams={defaultParams}
+        query={LOGS_PAGINATED}
         tableName={tableName}
         translation={translation}
         columns={columns}
-        // selected={selected}
-        // setSelected={setSelected}
-        getRow={getRow}
+        TableRow={TableRow}
       />
     </Layout>
   );

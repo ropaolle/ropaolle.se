@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     if (!process.browser) {
-      return;
+      return initialValue;
     }
 
     try {

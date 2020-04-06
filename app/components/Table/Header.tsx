@@ -1,23 +1,37 @@
 import React from 'react';
 import { useTranslation } from '../../lib/useTranslation';
+import { SpinnerIcon } from '../FontAwsomeIcons';
 import { CheckBox } from './CheckBox';
 
 interface HeaderItemProps {
   label: string;
   id: string;
-  field: string;
   ascending: boolean;
+  orderBy: string;
+  loading?: boolean;
   onClick: (id: string) => void;
 }
 
-const HeaderItem: React.SFC<HeaderItemProps> = ({ label, id, field, ascending, onClick }) => {
+const HeaderItem: React.SFC<HeaderItemProps> = ({
+  label,
+  id,
+  orderBy,
+  ascending,
+  loading,
+  onClick,
+}) => {
   return (
     <div className="sort-header" onClick={() => onClick(id)}>
       <div>{label}</div>
       <div className="sort-header-icons">
-        <div className={id === field && ascending ? 'sort-header-active' : ''}>▲</div>
-        <div className={id === field && !ascending ? 'sort-header-active' : ''}>▼</div>
+        <div className={id === orderBy && ascending ? 'sort-header-active' : ''}>▲</div>
+        <div className={id === orderBy && !ascending ? 'sort-header-active' : ''}>▼</div>
       </div>
+      {loading && (
+        <div className="ml-1">
+          <SpinnerIcon size={'16'} />
+        </div>
+      )}
       <style jsx>{`
         .sort-header {
           display: flex;
@@ -40,29 +54,37 @@ const HeaderItem: React.SFC<HeaderItemProps> = ({ label, id, field, ascending, o
 
 export type Column = string | string[];
 
-export interface Sort {
-  field: string;
+interface HeaderParams {
   ascending: boolean;
+  orderBy: string;
 }
 
 interface HeaderProps {
   translation: string;
   columns: Column[];
-  sort: Sort;
+  ascending: boolean;
+  orderBy: string;
   allSelected?: boolean;
+  loading: boolean;
   onSelectAll?: () => void;
-  onSortHeaderClick: (field: string) => void;
+  onSortHeaderClick: (params: HeaderParams) => void;
 }
 
 export const Header: React.SFC<HeaderProps> = ({
   translation,
   columns,
-  sort,
+  ascending,
+  orderBy,
   allSelected,
+  loading,
   onSelectAll,
   onSortHeaderClick,
 }) => {
   const [t] = useTranslation();
+
+  const handleSortHeaderClick = (field: string) => {
+    onSortHeaderClick({ orderBy: field, ascending: orderBy === field ? !ascending : ascending });
+  };
 
   return (
     <thead>
@@ -80,9 +102,11 @@ export const Header: React.SFC<HeaderProps> = ({
               {arr.map((name: string) => (
                 <HeaderItem
                   id={name}
+                  loading={index === 0 && loading}
                   key={name}
-                  {...sort}
-                  onClick={() => onSortHeaderClick(name)}
+                  ascending={ascending}
+                  orderBy={orderBy}
+                  onClick={() => handleSortHeaderClick(name)}
                   label={t(`${translation}.table.${name}`)}
                 />
               ))}
