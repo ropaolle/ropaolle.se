@@ -56,7 +56,7 @@ const translate = {
       message: 'Meddelande',
       jsonData: 'Data',
     },
-    tableEmpty: 'Tabell tom...',
+    tableEmpty: 'Inget innehåll...',
   },
   home: {
     regSuccess: 'Registreringar',
@@ -232,7 +232,7 @@ const translate = {
       isAdmin: 'Administratör',
       lastAccess: 'Senaste access',
     },
-    tableEmpty: 'Tabell tom...',
+    tableEmpty: 'Inget innehåll...',
   },
   error: {
     title: 'Fel',

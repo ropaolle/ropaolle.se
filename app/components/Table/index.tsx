@@ -5,6 +5,7 @@ import { DocumentNode } from 'graphql';
 import { Pager } from './Pager';
 import { Header, Column } from './Header';
 import { CheckBox } from './CheckBox';
+import { InfoCircleIcon } from '../FontAwsomeIcons';
 import { useLocalStorage } from '../../lib/useLocalStorage';
 import { useTranslation } from '../../lib/useTranslation';
 
@@ -40,7 +41,7 @@ export const Table: React.SFC<TableProps> = ({
   const [t] = useTranslation();
   const [allSelected, setAllSelected] = useState(false);
   const useCheckBoxes = typeof setSelected === 'function';
-  const [listParams, setListParams] = useLocalStorage(`${translation}-pageSize`, defaultParams);
+  const [listParams, setListParams] = useLocalStorage(`${translation}:list`, defaultParams);
   const { pageSize, activePage, orderBy, ascending } = listParams;
 
   const variables = {
@@ -130,7 +131,24 @@ export const Table: React.SFC<TableProps> = ({
             ))
           ) : (
             <tr>
-              <td colSpan={columns.length}>{t(`${translation}.tableEmpty`)}</td>
+              <td colSpan={columns.length}>
+                <div className="table-empty">
+                  <InfoCircleIcon size="40" />
+                  {t(`${translation}.tableEmpty`)}
+                </div>
+              </td>
+              <style jsx>{`
+                .table-empty {
+                  display: flex;
+                  align-items: center;
+                  flex-direction: column;
+                  font-size: 32px;
+                  justify-content: center;
+                  padding: 1em;
+                  text-align: center;
+                  color: #aaa;
+                }
+              `}</style>
             </tr>
           )}
         </tbody>
