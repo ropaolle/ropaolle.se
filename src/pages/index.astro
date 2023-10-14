@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { Linkedin, Twitter, Github } from "lucide-astro";
+---
+
+<Layout title="RopaOlle.se">
+  <main>
+    <div class="absolute -z-50">
+      <div class="flex items-center justify-center h-screen w-screen scale-75">
+        <svg
+          viewBox="-3.506 -23.9602 147.6425 223.8161"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <text
+            style="fill: rgb(22, 22, 24); font-family: 'Arial Rounded MT'; font-size: 128px; font-weight: 700; white-space: pre;"
+            x="-3.506"
+            y="96.845">R</text
+          >
+          <text
+            style="fill: rgb(22, 22, 24); font-family: 'Arial Rounded MT'; font-size: 153.798px; font-weight: 700; line-height: 246.078px; white-space: pre;"
+            transform="matrix(0.8516299724578857, 0, 0, 0.8322579860687256, -73.71688189680697, -23.569952362328053)"
+            x="133.994"
+            y="236.152">O</text
+          >
+        </svg>
+      </div>
+    </div>
+
+    <div class="container mx-auto text-center mt-32 rounded-xl p-4">
+      <h1 class="mb-8 text-slate-200 text-[3rem] md:text-[4rem]">
+        Welcome to <span class="text-red-400 font-bold">RopaOlle.se</span>
+      </h1>
+      <p class="text-slate-300">
+        First we build the tools, then they build us…
+      </p>
+      <div class="mt-4">
+        <a href="https://github.com/ropaolle">
+          <Github class="h-6 w-6 text-slate-500 inline mr-2" />
+        </a>
+        <a href="https://linkedin.com/ropaolle">
+          <Linkedin class="h-6 w-6 text-slate-500 inline mr-2" />
+        </a>
+        <a href="https://x.com/ropaolle">
+          <Twitter class="h-6 w-6 text-slate-500 inline mr-2" />
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
