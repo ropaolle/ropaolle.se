@@ -1,6 +1,6 @@
 # Todo
 
-- [ ] Deploy + Badge
+- ?
 
 ## Links
 
