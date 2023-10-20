@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
+// import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import cv from "../images/cv.png";
+import cv from "../images/cv-small.png";
 // import CV from "../components/CV.astro";
 import { Linkedin, Twitter, Github } from "lucide-astro";
 ---
@@ -38,7 +38,7 @@ import { Linkedin, Twitter, Github } from "lucide-astro";
     <div class="mx-auto mb-2 mt-24 w-64+ text-center align-middle">
       <div class="my-4 text-3xl text-slate-200">curriculum vitae</div>
       <a href="https://cv.ropaolle.se">
-        <Image src={cv} alt="cv" />
+        <img src={cv.src} alt="cv" />
       </a>
     </div>
     <div class=" text-sm mb-12 text-slate-600 text-center">Version 0.0.2</div>
