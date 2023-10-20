@@ -1,0 +1,30 @@
+---
+import Contact from './Contact.astro';
+
+interface Props {}
+
+const {} = Astro.props;
+---
+
+<article class="flex flex-1 flex-col mt-24 mx-8 print:m-0 print:p-0">
+  <div
+    class="m-auto my-4 flex h-[293mm] w-[210mm] flex-col bg-slate-100 shadow-lg print:visible print:my-0"
+  >
+    <!-- <Header name={name} role={role} />
+  <Profile>{profile}</Profile> -->
+    <div class="flex flex-1">
+      <div class="w-[33%] bg-slate-700 p-8 text-sm text-slate-100">
+        <Contact />
+      </div>
+      <div class="w-[67%] bg-slate-100 px-8 py-4">
+        <h2 class="mt-4 text-2xl uppercase tracking-wide text-slate-900">
+          Arbetslivserfarenhet
+        </h2>
+        <div class="mt-2 w-16 rounded border-4 border-sky-500"></div>
+        <!-- <Experience {...experiences[0]} />
+      <Experience {...experiences[1]} />
+      <Experience {...experiences[2]} /> -->
+      </div>
+    </div>
+  </div>
+</article>
