@@ -10,13 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^3.1.1",
+    "@astrojs/netlify": "^6.0.1",
     "@astrojs/tailwind": "^5.1.4",
-    "astro": "^3.6.5",
-    "lucide-astro": "^0.287.0",
+    "astro": "^5.1.1",
+    "lucide-astro": "^0.469.0",
     "prettier": "^3.4.2",
-    "prettier-plugin-astro": "^0.12.3",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.17"
   }
 }
