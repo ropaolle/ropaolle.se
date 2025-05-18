@@ -54,6 +54,17 @@
         drawSector(5.29, 5.35, "#0fa82e", 0);
         drawSector(6.0, 7.3, "#e6ae37", 0);
         drawSector(7.3, 7.46, "#0fa82e", 0);
+
+        ctx.beginPath();
+        const now = new Date();
+        const fts = new Date("Jun 4, 2026");
+        const totalSeconds = Math.abs(now.getTime() - fts.getTime()) / 1000;
+        const days = Math.floor(totalSeconds / (3600 * 24));
+        ctx.font = radius * 0.08 + "px arial";
+        ctx.fillStyle = "#a33";
+        ctx.translate(0,-radius*0.5)
+        ctx.fillText(days.toString() + " days", 0, 0);
+        ctx.translate(0,radius*0.5)
       }
 
       const months = [
