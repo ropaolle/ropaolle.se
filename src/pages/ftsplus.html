@@ -23,10 +23,10 @@
     <script>
       const canvas = document.getElementById("canvas");
 
-      canvas.height = window.screen.width;
-      canvas.width = window.screen.width;
+      canvas.height = window.screen.height;
+      canvas.width = window.screen.height;
       const ctx = canvas.getContext("2d");
-      let radius = canvas.width / 2;
+      let radius = canvas.height / 2;
       ctx.translate(radius, radius);
       radius = radius * 0.9;
 

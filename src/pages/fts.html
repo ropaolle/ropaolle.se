@@ -51,7 +51,7 @@
       padding-bottom: 0;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 760px) {
       .fields div:nth-child(1) {
         width: 100%;
       }
@@ -83,11 +83,16 @@
           <div>Seconds</div>
         </div>
       </div>
+      <div id="dims">1</div>
     </div>
 
     <script>
       drawCounter();
       setInterval(drawCounter, 1000);
+
+      document.getElementById("dims").innerHTML = window.innerWidth.toString()
+
+    
 
       function drawCounter() {
         var now = new Date();
