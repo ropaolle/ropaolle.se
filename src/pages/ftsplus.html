@@ -1,36 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+
+    #canvas {
+      /*background-color: #fff;
+      width: 100%;*/
+      object-fit: contain;
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  </style>
   <body>
-    <!-- <h1>HTML5 Canvas arc() Method</h1> -->
-    <!-- https://www.w3schools.com/graphics/tryit.asp?filename=trycanvas_circle -->
-    <!-- https://www.w3schools.com/css/tryit.asp?filename=tryresponsive_breakpoints2 -->
+    <canvas id="canvas"> Sorry, your browser does not support canvas. </canvas>
 
-    <canvas
-      id="canvas"
-      width2="400"
-      height2="400"
-      style="
-        background-color: #fff;
-        width: 100%;
-        object-fit: contain;
-      "
-    >
-      Sorry, your browser does not support canvas.
-    </canvas>
-
-  
     <script>
       const canvas = document.getElementById("canvas");
 
-      canvas.height = window.screen.height;
-      canvas.width = window.screen.height;
+      console.log(window.innerWidth, window.innerHeight);
+      console.log(Math.min(window.innerWidth, window.innerHeight));
+      const canvasSize = Math.min(window.innerWidth, window.innerHeight);
+      canvas.height = canvasSize;
+      canvas.width = canvasSize;
       const ctx = canvas.getContext("2d");
-      let radius = canvas.height / 2;
+      let radius = canvasSize / 2;
       ctx.translate(radius, radius);
       radius = radius * 0.9;
-
-      //var canvas = document.getElementById('canvas');
 
       function drawSector(start, stop, color = "orange", offset = 10) {
         ctx.beginPath();
@@ -39,8 +40,6 @@
         ctx.fillStyle = color;
         ctx.fill();
         ctx.closePath();
-        //ctx.lineWidth = 2;
-        //ctx.stroke();
       }
 
       function drawFace(ctx, radius) {
@@ -53,7 +52,7 @@
         //ctx.stroke();
 
         drawSector(5.29, 5.35, "#0fa82e", 0);
-        //drawSector(6.0, 7.3, "#e6ae37", -10);
+        drawSector(6.0, 7.3, "#e6ae37", 0);
         drawSector(7.3, 7.46, "#0fa82e", 0);
       }
 
@@ -157,11 +156,11 @@
           const t = 0; //Math.PI / 6;
           ctx.moveTo(
             0 + (radius - start) * Math.cos((i / numticks) * 2 * Math.PI + t),
-            0 + (radius - start) * Math.sin((i / numticks) * 2 * Math.PI + t)
+            0 + (radius - start) * Math.sin((i / numticks) * 2 * Math.PI + t),
           );
           ctx.lineTo(
             0 + (radius - stop) * Math.cos((i / numticks) * 2 * Math.PI + t),
-            0 + (radius - stop) * Math.sin((i / numticks) * 2 * Math.PI + t)
+            0 + (radius - stop) * Math.sin((i / numticks) * 2 * Math.PI + t),
           );
           ctx.stroke();
         }

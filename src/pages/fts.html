@@ -28,11 +28,11 @@
 
     .fields div div:nth-child(1) {
       font-weight: 500;
-      font-size: 85px;
+      font-size: 12vw;
     }
 
     .fields div div:nth-child(2) {
-      font-size: 25px;
+      font-size: 3vw;
       color: rgb(100 116 139);
     }
 
@@ -45,18 +45,15 @@
       color: #fff085;
     }
 
-    .fields2 div div:nth-child(1) {
-      font-weight: 500;
-      font-size: 85px;
-      padding-bottom: 0;
-    }
-
-    @media only screen and (max-width: 760px) {
+    @media only screen and (max-width: 1024px) {
       .fields div:nth-child(1) {
         width: 100%;
       }
+      .fields div div:nth-child(2) {
+        font-size: 4vw;
+      }
       .fields #days {
-        font-size: 125px;
+        font-size: 22vw;
       }
       .fields .days {
         padding-bottom: 50px;
@@ -83,16 +80,13 @@
           <div>Seconds</div>
         </div>
       </div>
-      <div id="dims">1</div>
     </div>
 
     <script>
       drawCounter();
       setInterval(drawCounter, 1000);
 
-      document.getElementById("dims").innerHTML = window.innerWidth.toString()
-
-    
+      //document.getElementById("dims").innerHTML = window.innerWidth.toString();
 
       function drawCounter() {
         var now = new Date();
