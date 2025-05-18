@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  
+  <body>
+    <!-- <h1>HTML5 Canvas arc() Method</h1> -->
+    <!-- https://www.w3schools.com/graphics/tryit.asp?filename=trycanvas_circle -->
+    <!-- https://www.w3schools.com/css/tryit.asp?filename=tryresponsive_breakpoints2 -->
+
+    <canvas
+      id="canvas"
+      width2="400"
+      height2="400"
+      style="
+        background-color: #fff;
+        width: 100%;
+        object-fit: contain;
+      "
+    >
+      Sorry, your browser does not support canvas.
+    </canvas>
+
+  
+    <script>
+      const canvas = document.getElementById("canvas");
+
+      canvas.height = window.screen.width;
+      canvas.width = window.screen.width;
+      const ctx = canvas.getContext("2d");
+      let radius = canvas.width / 2;
+      ctx.translate(radius, radius);
+      radius = radius * 0.9;
+
+      //var canvas = document.getElementById('canvas');
+
+      function drawSector(start, stop, color = "orange", offset = 10) {
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.arc(0, 0, radius - offset, start, stop);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.closePath();
+        //ctx.lineWidth = 2;
+        //ctx.stroke();
+      }
+
+      function drawFace(ctx, radius) {
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
+        ctx.fill();
+
+        ctx.lineWidth = radius * 0.05;
+        //ctx.stroke();
+
+        drawSector(5.29, 5.35, "#0fa82e", 0);
+        //drawSector(6.0, 7.3, "#e6ae37", -10);
+        drawSector(7.3, 7.46, "#0fa82e", 0);
+      }
+
+      const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "Maj",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Okt",
+        "Nov",
+        "Dec",
+      ];
+
+      function drawNumbers(ctx, radius) {
+        ctx.font = radius * 0.13 + "px arial";
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#333";
+        for (let num = 0; num < 12; num++) {
+          let ang = (num * Math.PI) / 6;
+          ctx.rotate(ang);
+          ctx.translate(0, -radius * 0.8);
+          ctx.rotate(-ang);
+          //ctx.fillText(num.toString(), 0, 0);
+          ctx.fillText(months[num], 0, 0);
+          ctx.rotate(ang);
+          ctx.translate(0, radius * 0.8);
+          ctx.rotate(-ang);
+        }
+      }
+
+      function drawTime(ctx, radius) {
+        ctx.strokeStyle = "#333";
+
+        const now = new Date();
+        let hour = now.getHours();
+        let minute = now.getMinutes();
+        let second = now.getSeconds();
+        //hour
+        hour = hour % 12;
+        hour =
+          (hour * Math.PI) / 6 +
+          (minute * Math.PI) / (6 * 60) +
+          (second * Math.PI) / (360 * 60);
+        drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+        //minute
+        minute = (minute * Math.PI) / 30 + (second * Math.PI) / (30 * 60);
+        drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+        // second
+        second = (second * Math.PI) / 30;
+        drawHand(ctx, second, radius * 0.9, radius * 0.02);
+      }
+
+      function daysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+      }
+
+      function drawDate(ctx, radius) {
+        let now = new Date();
+        //now = new Date(2026, 5, 4, 14);
+
+        let hour = now.getHours();
+        let minute = now.getMinutes();
+        let second = now.getSeconds();
+        let dayOfMonth = now.getDate() - 1;
+        let month = now.getMonth();
+        let year = now.getYear();
+
+        ctx.strokeStyle = "#a33";
+
+        dayHand = (dayOfMonth / daysInMonth(month, year)) * 2 * Math.PI;
+        drawHand(ctx, dayHand, radius * 0.8, radius * 0.05);
+        //ctx.fillText(hour, 110, 0);
+
+        monthHand = (month / 12) * 2 * Math.PI + dayHand / 12;
+        drawHand(ctx, monthHand, radius * 0.6, radius * 0.1);
+      }
+
+      function drawHand(ctx, pos, length, width) {
+        ctx.beginPath();
+        ctx.lineWidth = width;
+        ctx.lineCap = "round";
+        ctx.moveTo(0, 0);
+        ctx.rotate(pos);
+        ctx.lineTo(0, -length);
+        ctx.stroke();
+        ctx.rotate(-pos);
+      }
+
+      function drawDeviders(numticks, lineWidth, start, stop, radius) {
+        ctx.beginPath();
+        ctx.lineWidth = lineWidth;
+        ctx.lineCap = "square";
+        ctx.strokeStyle = "#333";
+        for (var i = 0; i <= numticks; i++) {
+          const t = 0; //Math.PI / 6;
+          ctx.moveTo(
+            0 + (radius - start) * Math.cos((i / numticks) * 2 * Math.PI + t),
+            0 + (radius - start) * Math.sin((i / numticks) * 2 * Math.PI + t)
+          );
+          ctx.lineTo(
+            0 + (radius - stop) * Math.cos((i / numticks) * 2 * Math.PI + t),
+            0 + (radius - stop) * Math.sin((i / numticks) * 2 * Math.PI + t)
+          );
+          ctx.stroke();
+        }
+      }
+
+      function drawClock() {
+        ctx.scale(1, 1);
+
+        drawFace(ctx, radius);
+        drawNumbers(ctx, radius);
+
+        drawDate(ctx, radius);
+        drawTime(ctx, radius);
+
+        drawDeviders(60, 3, 0, 10, radius + 0);
+        drawDeviders(12, 10, 15, 3, radius + 0);
+      }
+
+      drawClock();
+      setInterval(drawClock, 1000);
+    </script>
+  </body>
+</html>
