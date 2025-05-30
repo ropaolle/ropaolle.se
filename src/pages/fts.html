@@ -90,7 +90,7 @@
 
       function drawCounter() {
         var now = new Date();
-        var fts = new Date("Jun 4, 2026");
+        var fts = new Date("Jun 4, 2026, 17, 00");
         const totalSeconds = Math.abs(now.getTime() - fts.getTime()) / 1000;
         const days = Math.floor(totalSeconds / (3600 * 24));
         const hours = Math.floor((totalSeconds / 3600) % 24);
